@@ -23,6 +23,8 @@ Read <https://haxeflixel.com/documentation/visual-studio-code/>
 
 # Running
 
+Run > "Run and Debug" in VSCode. Or,
+
     lime test html5
     lime test neko
     lime test flash
