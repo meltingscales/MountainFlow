@@ -16,3 +16,10 @@
     haxelib run flixel-tools setup
 
     haxelib update flixel # (To update)
+
+# Running
+
+    cd HelloWorld
+    lime test html5
+    lime test neko
+    lime test flash
