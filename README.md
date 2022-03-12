@@ -30,7 +30,7 @@ Read <https://haxeflixel.com/documentation/visual-studio-code/>
 
 # Running
 
-Run > "Run and Debug" in VSCode.
+Run > "Run and Debug" in VSCode. (or press `F5`)
 
 Make sure to change the target:
 
