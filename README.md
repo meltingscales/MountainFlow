@@ -1,13 +1,20 @@
+MountainFlow
+==========
 
+Successor to <https://github.com/HenryFBP/LithicRivers>
 
 # Setup
 
 <https://haxeflixel.com/documentation/getting-started/>
 <https://haxeflixel.com/documentation/install-haxeflixel/>
+<https://haxe.org/download/>
+
+Run these one at a time. Some need your input.
 
     haxelib install lime
     haxelib install openfl
     haxelib install flixel
+    haxelib install hxcpp-debug-server
 
     haxelib run lime setup flixel
     haxelib run lime setup
@@ -36,3 +43,12 @@ Or,
     lime test html5
     lime test neko
     lime test flash
+
+# Issues
+
+## `64bit is not automatically supported for this version of VC. Set HXCPP_MSVC_CUSTOM and manually configure the executable, library and include paths`
+
+You need MSVC... <https://community.haxe.org/t/how-to-fix-error-set-hxcpp-msvc-custom-manually/2934>
+
+<https://code.visualstudio.com/docs/cpp/config-msvc>
+
