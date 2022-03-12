@@ -19,13 +19,10 @@
 
 # Developing
 
-Use HaxeDevelop, VSCode support seems to not work.
-
-<https://haxeflixel.com/documentation/HaxeDevelop/>
+Read <https://haxeflixel.com/documentation/visual-studio-code/>
 
 # Running
 
-    cd HelloWorld
     lime test html5
     lime test neko
     lime test flash
