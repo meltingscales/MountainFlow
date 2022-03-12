@@ -17,6 +17,12 @@
 
     haxelib update flixel # (To update)
 
+# Developing
+
+Use HaxeDevelop, VSCode support seems to not work.
+
+<https://haxeflixel.com/documentation/HaxeDevelop/>
+
 # Running
 
     cd HelloWorld

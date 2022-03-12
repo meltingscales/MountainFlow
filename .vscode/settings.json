@@ -9,5 +9,10 @@
 			"source.sortImports": true
 		}
 	},
-	"haxe.enableExtendedIndentation": true
+	"haxe.enableExtendedIndentation": true,
+	"haxe.displayServer": {
+		"arguments": [
+			"-v"
+		]
+	}
 }
