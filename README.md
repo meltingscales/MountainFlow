@@ -50,5 +50,11 @@ Or,
 
 You need MSVC... <https://community.haxe.org/t/how-to-fix-error-set-hxcpp-msvc-custom-manually/2934>
 
+SPECIFICALLY:
+
+- MSVC v143
+- Windows SDK (10.x)
+- Windows Universal CRT SDK
+
 <https://code.visualstudio.com/docs/cpp/config-msvc>
 
