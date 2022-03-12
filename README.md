@@ -23,7 +23,15 @@ Read <https://haxeflixel.com/documentation/visual-studio-code/>
 
 # Running
 
-Run > "Run and Debug" in VSCode. Or,
+Run > "Run and Debug" in VSCode.
+
+Make sure to change the target:
+
+![](media/reeeedebug.png)
+
+I recommend "Windows/Debug". This is the only setting I've found that works with VSCode breakpoints.
+
+Or,
 
     lime test html5
     lime test neko
