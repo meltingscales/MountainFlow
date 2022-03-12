@@ -1,7 +1,9 @@
 MountainFlow
 ==========
 
-Successor to <https://github.com/HenryFBP/LithicRivers>
+Some factory game... :P
+
+A successor to <https://github.com/HenryFBP/LithicRivers>, an unfinished ASCII game.
 
 # Setup
 
