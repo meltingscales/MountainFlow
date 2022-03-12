@@ -13,7 +13,7 @@ class PlayState extends FlxState
 
 		super.create();
 
-		var text = new flixel.text.FlxText(0, 0, 0, "wew", 64);
+		var text = new flixel.text.FlxText(0, 0, 0, "use WASD :)", 64);
 		text.screenCenter();
 		add(text);
 	}
