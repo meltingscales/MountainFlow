@@ -34,11 +34,13 @@ class PlayState extends FlxState
 		map.loadEntities(placeEntities, "entities");
 		add(player);
 
+		FlxG.camera.follow(player, TOPDOWN, 1);
+
 		super.create();
 
-		var text = new flixel.text.FlxText(0, 0, 0, "use WASD :)", 64);
-		text.screenCenter();
-		add(text);
+		// var text = new flixel.text.FlxText(0, 0, 0, "use WASD :)", 64);
+		// text.screenCenter();
+		// add(text);
 	}
 
 	override public function update(elapsed:Float)

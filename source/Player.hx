@@ -53,9 +53,9 @@ class Player extends FlxSprite
 			left = right = false;
 		}
 
-		var isMoving = (up || down || left || right);
+		var userInputsMoveCmd = (up || down || left || right);
 
-		if (isMoving)
+		if (userInputsMoveCmd)
 		{
 			var angle = IHateMath.angleOfTheDangle(up, down, left, right);
 			velocity.set(SPEED, 0);
