@@ -4,19 +4,16 @@
 		{
 			"name": "Build + Debug",
 			"type": "lime",
-			"cwd": "HelloWorld",
 			"request": "launch"
 		},
 		{
 			"name": "Debug",
 			"type": "lime",
-			"cwd": "HelloWorld",
 			"request": "launch",
 			"preLaunchTask": null
 		},
 		{
 			"name": "Macro",
-			"cwd": "HelloWorld",
 			"type": "haxe-eval",
 			"request": "launch"
 		}
