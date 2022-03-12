@@ -36,6 +36,8 @@ Read <https://haxeflixel.com/documentation/visual-studio-code/>
 
 Run > "Run and Debug" in VSCode. (or press `F5`)
 
+You can also press `F2` during a game to debug.
+
 Make sure to change the target:
 
 ![](media/reeeedebug.png)

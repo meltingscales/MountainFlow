@@ -21,6 +21,9 @@ class Player extends FlxSprite
 		animation.add("d", [0, 1, 0, 2], 6, false);
 
 		drag.x = drag.y = 1600;
+
+		setSize(8, 8);
+		offset.set(4, 4);
 	}
 
 	override function update(elapsed:Float)
