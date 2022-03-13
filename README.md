@@ -1,5 +1,4 @@
-MountainFlow
-============
+# MountainFlow
 
 Some factory game... :P
 
@@ -32,18 +31,18 @@ Read <https://haxeflixel.com/documentation/visual-studio-code/>
 
 ## Tiling/Maps/Entities
 
--   <https://ogmo-editor-3.github.io/>
+- <https://ogmo-editor-3.github.io/>
 
 ## Sprites
 
--   <https://www.pyxeledit.com/>
--   <https://www.aseprite.org/trial/>
--   <https://www.gimp.org/>
--   <https://www.piskelapp.com/>
+- <https://www.pyxeledit.com/>
+- <https://www.aseprite.org/trial/>
+- <https://www.gimp.org/>
+- <https://www.piskelapp.com/>
 
 ## Sound
 
--   <https://www.bfxr.net/>
+- <https://www.bfxr.net/>
 
 # Running
 
@@ -79,10 +78,13 @@ SPECIFICALLY:
 
 # Resources
 
--   <https://haxeflixel.com/documentation/getting-started/>
-    -   <https://haxeflixel.com/documentation/groundwork/>
--   <https://github.com/HaxeFlixel/flixel-demos>
-    -   <https://haxeflixel.com/demos/RPGInterface/>
-    -   <https://haxeflixel.com/demos/BSPMapGen/>
-    -   <https://haxeflixel.com/demos/TileMap/>
-    -   <https://haxeflixel.com/demos/FlxCaveGenerator/>
+- <https://haxeflixel.com/documentation/>
+- <https://haxeflixel.com/documentation/cheat-sheet/>
+- <https://haxeflixel.com/documentation/getting-started/>
+- <https://haxeflixel.com/documentation/groundwork/>
+- <https://github.com/HaxeFlixel/flixel-demos> Demos:
+  - <https://haxeflixel.com/demos/RPGInterface/>
+  - <https://haxeflixel.com/demos/BSPMapGen/>
+  - <https://haxeflixel.com/demos/TileMap/>
+  - <https://haxeflixel.com/demos/FlxCaveGenerator/>
+- <https://github.com/Beeblerox/Simplest-Heaps-Examples>

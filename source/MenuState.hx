@@ -7,27 +7,36 @@ import flixel.ui.FlxButton;
 
 class MenuState extends FlxState
 {
-	function clickPlay()
+	function clickDungeons()
 	{
-		FlxG.switchState(new PlayState());
+		FlxG.switchState(new PlayDungeonsState());
+	}
+
+	function clickProcGen()
+	{
+		// FlxG.switchState(new ProcGenState());
 	}
 
 	override public function create()
 	{
 		super.create();
 
-		if (FlxG.sound.music == null) // don't restart the music if it's already playing
-		{
-			FlxG.sound.playMusic(AssetPaths.HaxeFlixel_Tutorial_Game__ogg, 1, true);
-		}
+		var dungeonsButton = new FlxButton(0, 0, "Da Dungeon landz", clickDungeons);
+		dungeonsButton.screenCenter();
+		dungeonsButton.width *= 1.5;
+		dungeonsButton.onUp.sound = FlxG.sound.load(AssetPaths.select__wav);
+		add(dungeonsButton);
 
-		var playButton = new FlxButton(0, 0, "Play da game bro", clickPlay);
-		playButton.screenCenter();
-		playButton.onUp.sound = FlxG.sound.load(AssetPaths.select__wav);
-		add(playButton);
+		var procGenButton = new FlxButton(0, 0, "Da ProcGen landz", clickProcGen);
+		procGenButton.screenCenter();
+		procGenButton.onUp.sound = FlxG.sound.load(AssetPaths.select__wav);
+		// le shifty da button down
+		procGenButton.y += (dungeonsButton.height * 2);
+		procGenButton.width *= 2;
+		add(procGenButton);
 
 		var helpText = new FlxText(10, 10, "Instructions:
-Use WASD and SPACE :3c");
+Use WASD/arrows and Z/X/SPACE :3c");
 		// helpText.screenCenter();
 		add(helpText);
 	}
