@@ -39,6 +39,10 @@ Read <https://haxeflixel.com/documentation/visual-studio-code/>
 -   <https://www.gimp.org/>
 -   <https://www.piskelapp.com/>
 
+## Sound
+
+-   <https://www.bfxr.net/>
+
 # Running
 
 Run > "Run and Debug" in VSCode. (or press `F5`)

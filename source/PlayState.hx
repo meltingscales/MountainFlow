@@ -7,6 +7,7 @@ import flixel.FlxG;
 import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.system.FlxSound;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxColor;
 import openfl.display.Tile;
@@ -21,6 +22,8 @@ class PlayState extends FlxState
 
 	var map:FlxOgmo3Loader;
 	var walls:FlxTilemap;
+
+	var coinSound:FlxSound;
 
 	var drinks:FlxTypedGroup<MonsterEnergy>;
 	var enemies:FlxTypedGroup<Enemy>;
@@ -91,6 +94,8 @@ class PlayState extends FlxState
 
 		drinks = new FlxTypedGroup<MonsterEnergy>();
 		add(drinks);
+
+		coinSound = FlxG.sound.load(AssetPaths.coin__wav);
 
 		enemies = new FlxTypedGroup<Enemy>();
 		add(enemies);
@@ -195,6 +200,7 @@ class PlayState extends FlxState
 		if (player.alive && player.exists && drink.alive && drink.exists)
 		{
 			drink.kill();
+			coinSound.play(true);
 			money++;
 			hud.updateHUD(health, money);
 		}

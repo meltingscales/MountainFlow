@@ -5,9 +5,17 @@
 - Worldgen
 - block destruction
 - items
--   crafting
--   conveyor belts
--   liquids
+- crafting
+- conveyor belts
+- liquids
+
+# inspiration
+
+- <https://play.google.com/store/apps/details?id=io.concode.p3>
+- Factorio
+- Other factory games
+- Forager
+- Wayward
 
 # Imported from LithicRivers
 

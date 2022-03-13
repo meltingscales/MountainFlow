@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.math.FlxVelocity;
+import flixel.system.FlxSound;
 
 using flixel.util.FlxSpriteUtil;
 
@@ -32,6 +33,8 @@ class Enemy extends FlxSprite
 {
 	static inline var SPEED:Float = 140;
 
+	var stepSound:FlxSound;
+
 	var brain:FSM;
 	var idleTimer:Float;
 	var moveDirection:Float;
@@ -45,6 +48,9 @@ class Enemy extends FlxSprite
 	{
 		super(x, y);
 		this.type = type;
+
+		stepSound = FlxG.sound.load(AssetPaths.step__wav, 0.4);
+		stepSound.proximity(x, y, FlxG.camera.target, FlxG.width * 0.6);
 
 		var graphic = if (this.type == BOSS) AssetPaths.boss__png else AssetPaths.enemy__png;
 		loadGraphic(graphic, true, 16, 16);
@@ -155,6 +161,12 @@ class Enemy extends FlxSprite
 		}
 
 		brain.update(gameTickElapsed);
+
+		if ((velocity.x != 0 || velocity.y != 0) && touching == NONE)
+		{
+			stepSound.setPosition(x + frameWidth / 2, y + height);
+			stepSound.play();
+		}
 
 		super.update(gameTickElapsed);
 	}

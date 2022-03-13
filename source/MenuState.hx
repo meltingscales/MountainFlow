@@ -16,8 +16,14 @@ class MenuState extends FlxState
 	{
 		super.create();
 
+		if (FlxG.sound.music == null) // don't restart the music if it's already playing
+		{
+			FlxG.sound.playMusic(AssetPaths.HaxeFlixel_Tutorial_Game__ogg, 1, true);
+		}
+
 		var playButton = new FlxButton(0, 0, "Play da game bro", clickPlay);
 		playButton.screenCenter();
+		playButton.onUp.sound = FlxG.sound.load(AssetPaths.select__wav);
 		add(playButton);
 
 		var helpText = new FlxText(10, 10, "Instructions:
