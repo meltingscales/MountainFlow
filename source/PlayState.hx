@@ -12,16 +12,39 @@ class PlayState extends FlxState
 	var map:FlxOgmo3Loader;
 	var walls:FlxTilemap;
 	var drinks:FlxTypedGroup<MonsterEnergy>;
+	var enemies:FlxTypedGroup<Enemy>;
+
+	function checkEnemyVision(enemy:Enemy)
+	{
+		if (walls.ray(enemy.getMidpoint(), player.getMidpoint()))
+		{
+			enemy.seesPlayer = true;
+			enemy.playerPosition = player.getMidpoint();
+		}
+		else
+		{
+			enemy.seesPlayer = false;
+		}
+	}
 
 	function placeEntities(entity:EntityData)
 	{
-		if (entity.name == "player")
+		var x = entity.x;
+		var y = entity.y;
+
+		switch (entity.name)
 		{
-			player.setPosition(entity.x, entity.y);
-		}
-		else if (entity.name == "monster energy")
-		{
-			drinks.add(new MonsterEnergy(entity.x + 4, entity.y + 4));
+			case "player":
+				player.setPosition(x, y);
+
+			case "monster energy":
+				drinks.add(new MonsterEnergy(x + 4, y + 4));
+
+			case "enemy":
+				enemies.add(new Enemy(x + 4, y, REGULAR));
+
+			case "boss":
+				enemies.add(new Enemy(x + 4, y, BOSS));
 		}
 	}
 
@@ -38,6 +61,9 @@ class PlayState extends FlxState
 
 		drinks = new FlxTypedGroup<MonsterEnergy>();
 		add(drinks);
+
+		enemies = new FlxTypedGroup<Enemy>();
+		add(enemies);
 
 		player = new Player();
 		map.loadEntities(placeEntities, "entities");
@@ -56,7 +82,11 @@ class PlayState extends FlxState
 	{
 		super.update(elapsed);
 		FlxG.collide(player, walls);
+
 		FlxG.overlap(player, drinks, playerTouchDrink);
+
+		FlxG.collide(enemies, walls);
+		enemies.forEachAlive(checkEnemyVision);
 	}
 
 	function playerTouchDrink(player:Player, drink:MonsterEnergy)
