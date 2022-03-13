@@ -41,7 +41,7 @@ class Enemy extends FlxSprite
 
 	public var type:EnemyType;
 
-	public function new(x:Float, y:Float, type:EnemyType)
+	public function new(x:Float, y:Float, type:EnemyType = REGULAR)
 	{
 		super(x, y);
 		this.type = type;

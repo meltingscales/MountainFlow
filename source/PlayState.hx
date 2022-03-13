@@ -9,6 +9,7 @@ import flixel.addons.editors.ogmo.FlxOgmo3Loader;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxColor;
+import openfl.display.Tile;
 import ui.CombatHUD;
 import ui.HUD;
 
@@ -28,6 +29,9 @@ class PlayState extends FlxState
 
 	var money:Int = 0;
 	var health:Int = 3;
+
+	var specialTileX = 33;
+	var specialTileY = 18;
 
 	var inCombat:Bool = false;
 	var combatHud:CombatHUD;
@@ -76,11 +80,12 @@ class PlayState extends FlxState
 		walls.follow();
 
 		// test to see if we can programmatically set tiles
-		walls.setTile(33, 18, 3);
+		walls.setTile(specialTileX, specialTileY, 3);
 
-		walls.setTileProperties(1, NONE);
-		walls.setTileProperties(2, ANY);
-		walls.setTileProperties(3, ANY);
+		walls.setTileProperties(Tiles.VOID, NONE); // air
+		walls.setTileProperties(Tiles.FLOOR, NONE); // floor
+		walls.setTileProperties(Tiles.NORMAL_DUNGEON, ANY); // normal tile
+		walls.setTileProperties(Tiles.BURNT_DUNGEON, ANY); // burnt tile
 
 		add(walls);
 
@@ -146,6 +151,14 @@ class PlayState extends FlxState
 		}
 		else
 		{
+			var spacebar = FlxG.keys.anyJustPressed([SPACE]);
+
+			// test dynamic tilemap updates: when user presses spacebar, randomize a tile
+			if (spacebar)
+			{
+				walls.setTile(specialTileX, specialTileY, FlxG.random.int(Tiles.VOID, Tiles.BURNT_DUNGEON));
+			}
+
 			FlxG.collide(player, walls);
 			FlxG.overlap(player, drinks, playerTouchDrink);
 			FlxG.collide(enemies, walls);
