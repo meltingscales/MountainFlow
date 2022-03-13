@@ -24,13 +24,20 @@ Run these one at a time. Some need your input.
 
     haxelib update flixel # (To update)
 
-## Tiling
-
-<https://ogmo-editor-3.github.io/>
-
 # Developing
 
 Read <https://haxeflixel.com/documentation/visual-studio-code/>
+
+## Tiling/Maps/Entities
+
+-   <https://ogmo-editor-3.github.io/>
+
+## Sprites
+
+-   <https://www.pyxeledit.com/>
+-   <https://www.aseprite.org/trial/>
+-   <https://www.gimp.org/>
+-   <https://www.piskelapp.com/>
 
 # Running
 

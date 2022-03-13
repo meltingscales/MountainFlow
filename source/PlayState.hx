@@ -70,8 +70,12 @@ class PlayState extends FlxState
 		walls = map.loadTilemap(AssetPaths.tiles__png, "walls");
 		walls.follow();
 
+		// test to see if we can programmatically set tiles
+		walls.setTile(33, 18, 3);
+
 		walls.setTileProperties(1, NONE);
 		walls.setTileProperties(2, ANY);
+		walls.setTileProperties(3, ANY);
 
 		add(walls);
 
