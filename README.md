@@ -1,5 +1,5 @@
 MountainFlow
-==========
+============
 
 Successor to <https://github.com/HenryFBP/LithicRivers>
 
@@ -64,3 +64,8 @@ SPECIFICALLY:
 
 <https://code.visualstudio.com/docs/cpp/config-msvc>
 
+# Resources
+
+-   <https://haxeflixel.com/documentation/getting-started/>
+    -   <https://haxeflixel.com/documentation/groundwork/>
+-   <https://github.com/HaxeFlixel/flixel-demos>
