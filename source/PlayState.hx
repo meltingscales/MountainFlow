@@ -14,6 +14,10 @@ class PlayState extends FlxState
 	var drinks:FlxTypedGroup<MonsterEnergy>;
 	var enemies:FlxTypedGroup<Enemy>;
 
+	var hud:HUD;
+	var money:Int = 0;
+	var health:Int = 3;
+
 	function checkEnemyVision(enemy:Enemy)
 	{
 		if (walls.ray(enemy.getMidpoint(), player.getMidpoint()))
@@ -71,6 +75,9 @@ class PlayState extends FlxState
 
 		FlxG.camera.follow(player, TOPDOWN, 1);
 
+		hud = new HUD();
+		add(hud);
+
 		super.create();
 
 		// var text = new flixel.text.FlxText(0, 0, 0, "use WASD :)", 64);
@@ -94,6 +101,8 @@ class PlayState extends FlxState
 		if (player.alive && player.exists && drink.alive && drink.exists)
 		{
 			drink.kill();
+			money++;
+			hud.updateHUD(health, money);
 		}
 	}
 }
