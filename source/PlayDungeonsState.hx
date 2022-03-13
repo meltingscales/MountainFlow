@@ -2,6 +2,7 @@ package;
 
 import entity.Coin;
 import entity.Enemy;
+import entity.MagicPoof;
 import entity.Player;
 import flixel.FlxG;
 import flixel.FlxState;
@@ -79,11 +80,11 @@ class PlayDungeonsState extends FlxState
 	{
 		if (FlxG.sound.music == null) // don't restart the music if it's already playing
 		{
-			FlxG.sound.playMusic(AssetPaths.HaxeFlixel_Tutorial_Game__ogg, 1, true);
+			FlxG.sound.playMusic(AssetPaths.dungeonMusic__ogg, 1, true);
 		}
 
-		map = new FlxOgmo3Loader(AssetPaths.turnBasedRPG__ogmo, AssetPaths.level1__json);
-		walls = map.loadTilemap(AssetPaths.tiles__png, "walls");
+		map = new FlxOgmo3Loader(AssetPaths.dungeonMap__ogmo, AssetPaths.dungeonLevel__json);
+		walls = map.loadTilemap(AssetPaths.dungeonTiles__png, "walls");
 		walls.follow();
 
 		// test to see if we can programmatically set tiles
@@ -166,6 +167,7 @@ class PlayDungeonsState extends FlxState
 			if (spacebar)
 			{
 				walls.setTile(specialTileX, specialTileY, FlxG.random.int(Tiles.VOID, Tiles.BURNT_DUNGEON));
+				add(new MagicPoof(specialTileX * 16, specialTileY * 16));
 			}
 
 			FlxG.collide(player, walls);

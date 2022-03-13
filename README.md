@@ -4,6 +4,22 @@ Some factory game... :P
 
 A successor to <https://github.com/HenryFBP/LithicRivers>, an unfinished ASCII game.
 
+# Play the game
+
+See (TODO: AUTOMATE RELEASES).
+
+## Releasing
+
+### HTML5
+
+    lime build html5
+    todo
+
+### Windows
+
+    lime build windows
+    ./export/windows/bin/MountainFlow.exe
+
 # Setup
 
 <https://haxeflixel.com/documentation/getting-started/>
@@ -36,6 +52,7 @@ Read <https://haxeflixel.com/documentation/visual-studio-code/>
 ## Sprites
 
 - <https://www.pyxeledit.com/>
+  - <https://www.pyxeledit.com/learn.php>
 - <https://www.aseprite.org/trial/>
 - <https://www.gimp.org/>
 - <https://www.piskelapp.com/>
