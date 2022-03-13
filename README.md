@@ -1,5 +1,5 @@
 MountainFlow
-==========
+============
 
 Some factory game... :P
 
@@ -30,9 +30,26 @@ Run these one at a time. Some need your input.
 
 Read <https://haxeflixel.com/documentation/visual-studio-code/>
 
+## Tiling/Maps/Entities
+
+-   <https://ogmo-editor-3.github.io/>
+
+## Sprites
+
+-   <https://www.pyxeledit.com/>
+-   <https://www.aseprite.org/trial/>
+-   <https://www.gimp.org/>
+-   <https://www.piskelapp.com/>
+
+## Sound
+
+-   <https://www.bfxr.net/>
+
 # Running
 
-Run > "Run and Debug" in VSCode.
+Run > "Run and Debug" in VSCode. (or press `F5`)
+
+You can also press `F2` during a game to debug.
 
 Make sure to change the target:
 
@@ -60,3 +77,12 @@ SPECIFICALLY:
 
 <https://code.visualstudio.com/docs/cpp/config-msvc>
 
+# Resources
+
+-   <https://haxeflixel.com/documentation/getting-started/>
+    -   <https://haxeflixel.com/documentation/groundwork/>
+-   <https://github.com/HaxeFlixel/flixel-demos>
+    -   <https://haxeflixel.com/demos/RPGInterface/>
+    -   <https://haxeflixel.com/demos/BSPMapGen/>
+    -   <https://haxeflixel.com/demos/TileMap/>
+    -   <https://haxeflixel.com/demos/FlxCaveGenerator/>
