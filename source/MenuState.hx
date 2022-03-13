@@ -21,8 +21,8 @@ class MenuState extends FlxState
 		add(playButton);
 	}
 
-	override public function update(elapsed:Float)
+	override public function update(gameTickElapsed:Float)
 	{
-		super.update(elapsed);
+		super.update(gameTickElapsed);
 	}
 }

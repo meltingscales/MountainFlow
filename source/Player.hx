@@ -26,10 +26,10 @@ class Player extends FlxSprite
 		offset.set(4, 4);
 	}
 
-	override function update(elapsed:Float)
+	override function update(gameTickElapsed:Float)
 	{
 		updateMovement();
-		super.update(elapsed);
+		super.update(gameTickElapsed);
 	}
 
 	function updateMovement()

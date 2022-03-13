@@ -6,17 +6,25 @@ import flixel.addons.editors.ogmo.FlxOgmo3Loader;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.tile.FlxTilemap;
 
+using flixel.util.FlxSpriteUtil;
+
 class PlayState extends FlxState
 {
 	var player:Player;
+
 	var map:FlxOgmo3Loader;
 	var walls:FlxTilemap;
+
 	var drinks:FlxTypedGroup<MonsterEnergy>;
 	var enemies:FlxTypedGroup<Enemy>;
 
 	var hud:HUD;
+
 	var money:Int = 0;
 	var health:Int = 3;
+
+	var inCombat:Bool = false;
+	var combatHud:CombatHUD;
 
 	function checkEnemyVision(enemy:Enemy)
 	{
@@ -78,6 +86,9 @@ class PlayState extends FlxState
 		hud = new HUD();
 		add(hud);
 
+		combatHud = new CombatHUD();
+		add(combatHud);
+
 		super.create();
 
 		// var text = new flixel.text.FlxText(0, 0, 0, "use WASD :)", 64);
@@ -85,15 +96,52 @@ class PlayState extends FlxState
 		// add(text);
 	}
 
-	override public function update(elapsed:Float)
+	override public function update(gameTickElapsed:Float)
 	{
-		super.update(elapsed);
-		FlxG.collide(player, walls);
+		if (inCombat)
+		{
+			if (!combatHud.visible)
+			{
+				health = combatHud.playerHealth;
+				hud.updateHUD(health, money);
+				if (combatHud.outcome == VICTORY)
+				{
+					combatHud.enemy.kill();
+				}
+				else
+				{
+					combatHud.enemy.flicker();
+				}
+				inCombat = false;
+				player.active = true;
+				enemies.active = true;
+			}
+		}
+		else
+		{
+			FlxG.collide(player, walls);
+			FlxG.overlap(player, drinks, playerTouchDrink);
+			FlxG.collide(enemies, walls);
+			enemies.forEachAlive(checkEnemyVision);
+			FlxG.overlap(player, enemies, playerTouchEnemy);
+		}
+		super.update(gameTickElapsed);
+	}
 
-		FlxG.overlap(player, drinks, playerTouchDrink);
+	function startCombat(enemy:Enemy)
+	{
+		inCombat = true;
+		player.active = false;
+		enemies.active = false;
+		combatHud.initCombat(health, enemy);
+	}
 
-		FlxG.collide(enemies, walls);
-		enemies.forEachAlive(checkEnemyVision);
+	function playerTouchEnemy(player:Player, enemy:Enemy)
+	{
+		if (player.alive && player.exists && enemy.alive && enemy.exists && !enemy.isFlickering())
+		{
+			startCombat(enemy);
+		}
 	}
 
 	function playerTouchDrink(player:Player, drink:MonsterEnergy)

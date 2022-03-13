@@ -5,6 +5,8 @@ import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.math.FlxVelocity;
 
+using flixel.util.FlxSpriteUtil;
+
 enum EnemyType
 {
 	REGULAR;
@@ -20,9 +22,9 @@ class FSM
 		activeState = initialState;
 	}
 
-	public function update(elapsed:Float)
+	public function update(gameTickElapsed:Float)
 	{
-		activeState(elapsed);
+		activeState(gameTickElapsed);
 	}
 }
 
@@ -37,7 +39,7 @@ class Enemy extends FlxSprite
 	public var seesPlayer:Bool;
 	public var playerPosition:FlxPoint;
 
-	var type:EnemyType;
+	public var type:EnemyType;
 
 	public function new(x:Float, y:Float, type:EnemyType)
 	{
@@ -64,7 +66,7 @@ class Enemy extends FlxSprite
 		playerPosition = FlxPoint.get();
 	}
 
-	function idle(elapsed:Float)
+	function idle(gameTickElapsed:Float)
 	{
 		if (seesPlayer)
 		{
@@ -88,11 +90,21 @@ class Enemy extends FlxSprite
 		}
 		else
 		{
-			idleTimer -= elapsed;
+			idleTimer -= gameTickElapsed;
 		}
 	}
 
-	function chase(elapsed:Float)
+	public function changeType(type:EnemyType)
+	{
+		if (this.type != type)
+		{
+			this.type = type;
+			var graphic = if (type == BOSS) AssetPaths.boss__png else AssetPaths.enemy__png;
+			loadGraphic(graphic, true, 16, 16);
+		}
+	}
+
+	function chase(gameTickElapsed:Float)
 	{
 		if (!seesPlayer)
 		{
@@ -104,8 +116,12 @@ class Enemy extends FlxSprite
 		}
 	}
 
-	override public function update(elapsed:Float)
+	override public function update(gameTickElapsed:Float)
 	{
+		// we are disabled
+		if (this.isFlickering())
+			return;
+
 		if ((velocity.x != 0 || velocity.y != 0) && touching == NONE)
 		{
 			if (Math.abs(velocity.x) > Math.abs(velocity.y))
@@ -138,8 +154,8 @@ class Enemy extends FlxSprite
 			}
 		}
 
-		brain.update(elapsed);
+		brain.update(gameTickElapsed);
 
-		super.update(elapsed);
+		super.update(gameTickElapsed);
 	}
 }
