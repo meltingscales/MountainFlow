@@ -69,3 +69,7 @@ SPECIFICALLY:
 -   <https://haxeflixel.com/documentation/getting-started/>
     -   <https://haxeflixel.com/documentation/groundwork/>
 -   <https://github.com/HaxeFlixel/flixel-demos>
+    -   <https://haxeflixel.com/demos/RPGInterface/>
+    -   <https://haxeflixel.com/demos/BSPMapGen/>
+    -   <https://haxeflixel.com/demos/TileMap/>
+    -   <https://haxeflixel.com/demos/FlxCaveGenerator/>
