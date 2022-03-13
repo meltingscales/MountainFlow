@@ -1,11 +1,16 @@
 package;
 
+import entity.Enemy;
+import entity.MonsterEnergy;
+import entity.Player;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxColor;
+import ui.CombatHUD;
+import ui.HUD;
 
 using flixel.util.FlxSpriteUtil;
 

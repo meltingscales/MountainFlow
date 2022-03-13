@@ -1,3 +1,5 @@
+package util;
+
 final class IHateMath
 {
 	public static function angleOfTheDangle(up:Bool, down:Bool, left:Bool, right:Bool):Float

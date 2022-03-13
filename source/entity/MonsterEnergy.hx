@@ -1,4 +1,4 @@
-package;
+package entity;
 
 import flixel.FlxSprite;
 import flixel.tweens.FlxEase;

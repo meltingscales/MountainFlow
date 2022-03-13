@@ -1,9 +1,10 @@
-package;
+package entity;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
+import util.IHateMath;
 
 class Player extends FlxSprite
 {

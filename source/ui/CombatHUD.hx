@@ -1,5 +1,7 @@
-package;
+package ui;
 
+import entity.Enemy;
+import entity.Player;
 import flash.filters.ColorMatrixFilter;
 import flash.geom.Matrix;
 import flash.geom.Point;
