@@ -15,7 +15,7 @@ class MagicPoof extends FlxSprite
 		FlxTween.tween(this, {
 			alpha: 0,
 			x: x + xShift,
-			y: y + 16
+			y: y - 16
 		}, 2, {
 			ease: FlxEase.circOut,
 			onComplete: finishKill

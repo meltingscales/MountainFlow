@@ -6,14 +6,14 @@ A successor to <https://github.com/HenryFBP/LithicRivers>, an unfinished ASCII g
 
 # Play the game
 
-See (TODO: AUTOMATE RELEASES).
+Download a release for your platform at <https://github.com/HenryFBP/MountainFlow/releases>
 
 ## Releasing
 
 ### HTML5
 
     lime build html5
-    todo
+    ./export/html5/bin/index.html
 
 ### Windows
 
