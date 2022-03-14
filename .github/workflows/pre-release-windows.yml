@@ -18,8 +18,8 @@ jobs:
 
       - name: Install deps
         run: |
-          apt update
-          apt install lime
+          sudo apt update
+          sudo apt install lime
 
       - name: Build
         run: |
