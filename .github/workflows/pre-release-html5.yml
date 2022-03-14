@@ -1,0 +1,45 @@
+name: HTML5 Release
+
+on:
+  push:
+    branches:
+      - release  # Set a branch to deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      # - name: Setup Hugo
+      #   uses: peaceiris/actions-hugo@v2
+      #   with:
+      #     hugo-version: 'latest'
+      #     # extended: true
+
+      - name: Install deps
+        run: |
+          sudo apt update
+          sudo apt-get install haxe -y
+          haxelib setup ~/lib
+          echo "Installing lime, openfl, and flixel..."
+          haxelib install lime 2>&1 > limelog.txt
+          haxelib install openfl 2>&1 > openfllog.txt
+          haxelib install flixel 2>&1 > flixellog.txt
+          haxelib run lime setup flixel 2>&1 > limesetupflixellog.txt
+          echo "Done downloading."
+          echo -ne 'y\n' | haxelib run lime setup
+
+      - name: Build
+        run: |
+          lime build html5
+          ls -lash ./export/html5/bin/
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./export/html5/bin/

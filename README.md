@@ -1,9 +1,31 @@
-MountainFlow
-============
+# MountainFlow
 
 Some factory game... :P
 
 A successor to <https://github.com/HenryFBP/LithicRivers>, an unfinished ASCII game.
+
+# Play the game
+
+Visit this page to play the latest commit from the branch `release` in your browser:
+
+- <https://henryfbp.github.io/MountainFlow/>
+
+Download a release for your platform at <https://github.com/HenryFBP/MountainFlow/releases>
+
+## Releasing
+
+### HTML5
+
+    lime build html5
+    pushd ./export/html5/bin
+    python3 -m http.server & # We do this due to CORS issues if opening HTML files locally
+    echo "Visit http://localhost:8000/"
+    popd
+
+### Windows
+
+    lime build windows
+    ./export/windows/bin/MountainFlow.exe
 
 # Setup
 
@@ -32,18 +54,19 @@ Read <https://haxeflixel.com/documentation/visual-studio-code/>
 
 ## Tiling/Maps/Entities
 
--   <https://ogmo-editor-3.github.io/>
+- <https://ogmo-editor-3.github.io/>
 
 ## Sprites
 
--   <https://www.pyxeledit.com/>
--   <https://www.aseprite.org/trial/>
--   <https://www.gimp.org/>
--   <https://www.piskelapp.com/>
+- <https://www.pyxeledit.com/>
+  - <https://www.pyxeledit.com/learn.php>
+- <https://www.aseprite.org/trial/>
+- <https://www.gimp.org/>
+- <https://www.piskelapp.com/>
 
 ## Sound
 
--   <https://www.bfxr.net/>
+- <https://www.bfxr.net/>
 
 # Running
 
@@ -53,7 +76,7 @@ You can also press `F2` during a game to debug.
 
 Make sure to change the target:
 
-![](media/reeeedebug.png)
+![](media/debug.png)
 
 I recommend "Windows/Debug". This is the only setting I've found that works with VSCode breakpoints.
 
@@ -79,10 +102,13 @@ SPECIFICALLY:
 
 # Resources
 
--   <https://haxeflixel.com/documentation/getting-started/>
-    -   <https://haxeflixel.com/documentation/groundwork/>
--   <https://github.com/HaxeFlixel/flixel-demos>
-    -   <https://haxeflixel.com/demos/RPGInterface/>
-    -   <https://haxeflixel.com/demos/BSPMapGen/>
-    -   <https://haxeflixel.com/demos/TileMap/>
-    -   <https://haxeflixel.com/demos/FlxCaveGenerator/>
+- <https://haxeflixel.com/documentation/>
+- <https://haxeflixel.com/documentation/cheat-sheet/>
+- <https://haxeflixel.com/documentation/getting-started/>
+- <https://haxeflixel.com/documentation/groundwork/>
+- <https://github.com/HaxeFlixel/flixel-demos> Demos:
+  - <https://haxeflixel.com/demos/RPGInterface/>
+  - <https://haxeflixel.com/demos/BSPMapGen/>
+  - <https://haxeflixel.com/demos/TileMap/>
+  - <https://haxeflixel.com/demos/FlxCaveGenerator/>
+- <https://github.com/Beeblerox/Simplest-Heaps-Examples>

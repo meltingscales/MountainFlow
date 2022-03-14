@@ -1,0 +1,41 @@
+# ---
+# name: "pre-release-windows"
+
+# on:
+#   push:
+#     branches:
+#       - "release"
+#     tags-ignore:
+#       - "*"
+
+# jobs:
+#   gh_pre_release:
+#     runs-on: windows-latest
+
+#     steps:
+#       - name: "Checkout source code"
+#         uses: "actions/checkout@v2.4.0"
+
+#       - name: Install deps
+#         run: |
+#           apt update
+#           apt install lime
+
+#       - name: Build
+#         run: |
+#           ls -lash
+#           echo 'wee woo wee woo WEEWOOWEEWOOWEEWOOWEEWOO'
+#           lime build html5
+#           mv ./export/html5/bin/** ./
+#           ls -lash
+
+#       - uses: "marvinpinto/action-automatic-releases@latest"
+#         with:
+#           repo_token: "${{ secrets.GITHUB_TOKEN }}"
+#           automatic_release_tag: "latest-windows"
+#           prerelease: true
+#           title: "Development Build Windows"
+#           files: |
+#             export/windows/bin/MountainFlow.exe
+# #            potemkeys/*.jsonc
+#         id: "automatic_releases_windows"

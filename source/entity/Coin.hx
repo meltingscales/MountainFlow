@@ -4,7 +4,7 @@ import flixel.FlxSprite;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 
-class MonsterEnergy extends FlxSprite
+class Coin extends FlxSprite
 {
 	override function kill()
 	{

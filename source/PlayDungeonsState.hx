@@ -1,7 +1,8 @@
 package;
 
+import entity.Coin;
 import entity.Enemy;
-import entity.MonsterEnergy;
+import entity.MagicPoof;
 import entity.Player;
 import flixel.FlxG;
 import flixel.FlxState;
@@ -10,13 +11,12 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.system.FlxSound;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxColor;
-import openfl.display.Tile;
 import ui.CombatHUD;
 import ui.HUD;
 
 using flixel.util.FlxSpriteUtil;
 
-class PlayState extends FlxState
+class PlayDungeonsState extends FlxState
 {
 	var player:Player;
 
@@ -25,7 +25,7 @@ class PlayState extends FlxState
 
 	var coinSound:FlxSound;
 
-	var drinks:FlxTypedGroup<MonsterEnergy>;
+	var coins:FlxTypedGroup<Coin>;
 	var enemies:FlxTypedGroup<Enemy>;
 
 	var hud:HUD;
@@ -66,7 +66,7 @@ class PlayState extends FlxState
 				player.setPosition(x, y);
 
 			case "monster energy":
-				drinks.add(new MonsterEnergy(x + 4, y + 4));
+				coins.add(new Coin(x + 4, y + 4));
 
 			case "enemy":
 				enemies.add(new Enemy(x + 4, y, REGULAR));
@@ -78,8 +78,13 @@ class PlayState extends FlxState
 
 	override public function create()
 	{
-		map = new FlxOgmo3Loader(AssetPaths.turnBasedRPG__ogmo, AssetPaths.level1__json);
-		walls = map.loadTilemap(AssetPaths.tiles__png, "walls");
+		if (FlxG.sound.music == null) // don't restart the music if it's already playing
+		{
+			FlxG.sound.playMusic(AssetPaths.dungeonMusic__ogg, 1, true);
+		}
+
+		map = new FlxOgmo3Loader(AssetPaths.dungeonMap__ogmo, AssetPaths.dungeonLevel__json);
+		walls = map.loadTilemap(AssetPaths.dungeonTiles__png, "walls");
 		walls.follow();
 
 		// test to see if we can programmatically set tiles
@@ -92,8 +97,8 @@ class PlayState extends FlxState
 
 		add(walls);
 
-		drinks = new FlxTypedGroup<MonsterEnergy>();
-		add(drinks);
+		coins = new FlxTypedGroup<Coin>();
+		add(coins);
 
 		coinSound = FlxG.sound.load(AssetPaths.coin__wav);
 
@@ -162,10 +167,11 @@ class PlayState extends FlxState
 			if (spacebar)
 			{
 				walls.setTile(specialTileX, specialTileY, FlxG.random.int(Tiles.VOID, Tiles.BURNT_DUNGEON));
+				add(new MagicPoof(specialTileX * 16, specialTileY * 16));
 			}
 
 			FlxG.collide(player, walls);
-			FlxG.overlap(player, drinks, playerTouchDrink);
+			FlxG.overlap(player, coins, playerTouchCoin);
 			FlxG.collide(enemies, walls);
 			enemies.forEachAlive(checkEnemyVision);
 			FlxG.overlap(player, enemies, playerTouchEnemy);
@@ -195,11 +201,11 @@ class PlayState extends FlxState
 		}
 	}
 
-	function playerTouchDrink(player:Player, drink:MonsterEnergy)
+	function playerTouchCoin(player:Player, coin:Coin)
 	{
-		if (player.alive && player.exists && drink.alive && drink.exists)
+		if (player.alive && player.exists && coin.alive && coin.exists)
 		{
-			drink.kill();
+			coin.kill();
 			coinSound.play(true);
 			money++;
 			hud.updateHUD(health, money);
