@@ -33,14 +33,11 @@ jobs:
 
       - name: Build
         run: |
-          ls -lash
-          echo 'wee woo wee woo WEEWOOWEEWOOWEEWOOWEEWOO'
           lime build html5
-          mv ./export/html5/bin/** ./
-          ls -lash
+          ls -lash ./export/html5/bin/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./export/html5/bin/
