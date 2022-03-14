@@ -88,7 +88,7 @@ class PlayDungeonsState extends FlxState
 		walls.follow();
 
 		// test to see if we can programmatically set tiles
-		walls.setTile(specialTileX, specialTileY, 3);
+		walls.setTile(specialTileX, specialTileY, Tiles.BURNT_DUNGEON);
 
 		walls.setTileProperties(Tiles.VOID, NONE); // air
 		walls.setTileProperties(Tiles.FLOOR, NONE); // floor
@@ -167,7 +167,10 @@ class PlayDungeonsState extends FlxState
 			if (spacebar)
 			{
 				walls.setTile(specialTileX, specialTileY, FlxG.random.int(Tiles.VOID, Tiles.BURNT_DUNGEON));
-				add(new MagicPoof(specialTileX * 16, specialTileY * 16));
+				for (_ in 1...4)
+				{
+					add(new MagicPoof(specialTileX * 16, specialTileY * 16));
+				}
 			}
 
 			FlxG.collide(player, walls);

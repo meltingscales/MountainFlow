@@ -14,7 +14,7 @@ class MenuState extends FlxState
 
 	function clickProcGen()
 	{
-		// FlxG.switchState(new ProcGenState());
+		FlxG.switchState(new PlayProcGenState());
 	}
 
 	override public function create()
