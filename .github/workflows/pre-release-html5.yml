@@ -3,7 +3,7 @@ name: HTML5 Release
 on:
   push:
     branches:
-      - devel  # Set a branch to deploy
+      - release  # Set a branch to deploy
 
 jobs:
   deploy:
