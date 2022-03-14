@@ -24,7 +24,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt-get install haxe -y
-          echo -ne '\n' | haxelib setup
+          sudo haxelib setup
           haxelib install lime
           haxelib install openfl
           haxelib install flixel
