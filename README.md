@@ -112,3 +112,4 @@ SPECIFICALLY:
   - <https://haxeflixel.com/demos/TileMap/>
   - <https://haxeflixel.com/demos/FlxCaveGenerator/>
 - <https://github.com/Beeblerox/Simplest-Heaps-Examples>
+- <https://kinocreates.io/tutorials/haxeflixel-object-pooling/>
