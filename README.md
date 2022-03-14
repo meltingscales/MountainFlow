@@ -13,7 +13,10 @@ Download a release for your platform at <https://github.com/HenryFBP/MountainFlo
 ### HTML5
 
     lime build html5
-    ./export/html5/bin/index.html
+    pushd ./export/html5/bin
+    python3 -m http.server & # We do this due to CORS issues if opening HTML files locally
+    echo "Visit http://localhost:8000/"
+    popd
 
 ### Windows
 
@@ -69,7 +72,7 @@ You can also press `F2` during a game to debug.
 
 Make sure to change the target:
 
-![](media/reeeedebug.png)
+![](media/debug.png)
 
 I recommend "Windows/Debug". This is the only setting I've found that works with VSCode breakpoints.
 
