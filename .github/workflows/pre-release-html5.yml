@@ -25,9 +25,9 @@ jobs:
           sudo apt update
           sudo apt-get install haxe -y
           haxelib setup ~/lib
-          haxelib install lime
-          haxelib install openfl
-          haxelib install flixel
+          haxelib install lime 2>&1 > limelog.txt
+          haxelib install openfl 2>&1 > openfllog.txt
+          haxelib install flixel 2>&1 > flixellog.txt
           haxelib run lime setup flixel
           echo -ne 'y\n' | haxelib run lime setup
 
