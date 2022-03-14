@@ -1,0 +1,40 @@
+name: HTML5 Release
+
+on:
+  push:
+    branches:
+      - devel  # Set a branch to deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      # - name: Setup Hugo
+      #   uses: peaceiris/actions-hugo@v2
+      #   with:
+      #     hugo-version: 'latest'
+      #     # extended: true
+
+      - name: Install deps
+        run: |
+          apt update
+          apt install lime
+
+      - name: Build
+        run: |
+          ls -lash
+          echo 'wee woo wee woo WEEWOOWEEWOOWEEWOOWEEWOO'
+          lime build html5
+          mv ./export/html5/bin/** ./
+          ls -lash
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
