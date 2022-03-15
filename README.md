@@ -106,6 +106,7 @@ SPECIFICALLY:
 - <https://haxeflixel.com/documentation/cheat-sheet/>
 - <https://haxeflixel.com/documentation/getting-started/>
 - <https://haxeflixel.com/documentation/groundwork/>
+- <https://haxe.org/manual/introduction.html>
 - <https://github.com/HaxeFlixel/flixel-demos> Demos:
   - <https://haxeflixel.com/demos/RPGInterface/>
   - <https://haxeflixel.com/demos/BSPMapGen/>

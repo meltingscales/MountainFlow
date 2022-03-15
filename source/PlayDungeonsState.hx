@@ -12,7 +12,7 @@ import flixel.system.FlxSound;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxColor;
 import ui.CombatHUD;
-import ui.HUD;
+import ui.DungeonHUD;
 
 using flixel.util.FlxSpriteUtil;
 
@@ -28,7 +28,7 @@ class PlayDungeonsState extends FlxState
 	var coins:FlxTypedGroup<Coin>;
 	var enemies:FlxTypedGroup<Enemy>;
 
-	var hud:HUD;
+	var dungeonHUD:DungeonHUD;
 
 	var money:Int = 0;
 	var health:Int = 3;
@@ -111,8 +111,8 @@ class PlayDungeonsState extends FlxState
 
 		FlxG.camera.follow(player, TOPDOWN, 1);
 
-		hud = new HUD();
-		add(hud);
+		dungeonHUD = new DungeonHUD();
+		add(dungeonHUD);
 
 		combatHud = new CombatHUD();
 		add(combatHud);
@@ -131,7 +131,7 @@ class PlayDungeonsState extends FlxState
 			if (!combatHud.visible)
 			{
 				health = combatHud.playerHealth;
-				hud.updateHUD(health, money);
+				dungeonHUD.updateHUD(health, money);
 				if (combatHud.outcome == DEFEAT)
 				{
 					ending = true;
@@ -167,6 +167,7 @@ class PlayDungeonsState extends FlxState
 			if (spacebar)
 			{
 				walls.setTile(specialTileX, specialTileY, FlxG.random.int(Tiles.VOID, Tiles.BURNT_DUNGEON));
+				trace("random tile update at " + specialTileX + "," + specialTileY + " :P");
 				for (_ in 1...4)
 				{
 					add(new MagicPoof(specialTileX * 16, specialTileY * 16));
@@ -211,7 +212,7 @@ class PlayDungeonsState extends FlxState
 			coin.kill();
 			coinSound.play(true);
 			money++;
-			hud.updateHUD(health, money);
+			dungeonHUD.updateHUD(health, money);
 		}
 	}
 
