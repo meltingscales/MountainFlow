@@ -2,6 +2,7 @@ package;
 
 import entity.Coin;
 import entity.Item;
+import entity.MagicPoof;
 import entity.Player;
 import flixel.FlxG;
 import flixel.FlxState;
@@ -66,6 +67,23 @@ class StatePlayProcGen extends FlxState
 	{
 		FlxG.collide(player, walls);
 		FlxG.overlap(player, items, playerTouchItem);
+
+		var spacebar = FlxG.keys.anyJustPressed([SPACE]);
+
+		// test dynamic tilemap updates: when user presses spacebar, they mine a tile
+		if (spacebar)
+		{
+			var x = 14;
+			var y = 14;
+
+			var tileUnder = walls.getTile(x, y);
+			trace("under " + x + y + " we get tile" + tileUnder);
+
+			for (_ in 1...4)
+			{
+				add(new MagicPoof(x * Settings.TILE_WIDTH, y * Settings.TILE_HEIGHT));
+			}
+		}
 
 		super.update(gameTickElapsed);
 	}
