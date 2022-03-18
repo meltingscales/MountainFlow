@@ -1,5 +1,5 @@
 {
-  "name": "MountainFlow",
+  "name": "MountainFlow procgen",
   "ogmoVersion": "3.4.0",
   "levelPaths": ["."],
   "backgroundColor": "#282c34ff",
@@ -32,7 +32,7 @@
       "exportID": "11123224",
       "exportMode": 0,
       "arrayMode": 0,
-      "defaultTileset": "dungeonTiles"
+      "defaultTileset": "tiles"
     }
   ],
   "entities": [
@@ -55,42 +55,6 @@
         ]
       },
       "color": "#7e00b1ff",
-      "tileX": false,
-      "tileY": false,
-      "tileSize": {"x": 16, "y": 16},
-      "resizeableX": false,
-      "resizeableY": false,
-      "rotatable": false,
-      "rotationDegrees": 360,
-      "canFlipX": false,
-      "canFlipY": false,
-      "canSetColor": false,
-      "hasNodes": false,
-      "nodeLimit": 0,
-      "nodeDisplay": 0,
-      "nodeGhost": true,
-      "tags": [],
-      "values": []
-    },
-    {
-      "exportID": "12646077",
-      "name": "monster energy",
-      "limit": -1,
-      "size": {"x": 16, "y": 16},
-      "origin": {"x": 0, "y": 0},
-      "originAnchored": true,
-      "shape": {
-        "label": "Rectangle",
-        "points": [
-          {"x": -1, "y": -1},
-          {"x": 1, "y": -1},
-          {"x": -1, "y": 1},
-          {"x": 1, "y": -1},
-          {"x": -1, "y": 1},
-          {"x": 1, "y": 1}
-        ]
-      },
-      "color": "#00ff3fff",
       "tileX": false,
       "tileY": false,
       "tileSize": {"x": 16, "y": 16},
@@ -215,9 +179,45 @@
       "nodeGhost": true,
       "tags": [],
       "values": []
+    },
+    {
+      "exportID": "56334319",
+      "name": "machine",
+      "limit": -1,
+      "size": {"x": 16, "y": 16},
+      "origin": {"x": 0, "y": 0},
+      "originAnchored": true,
+      "shape": {
+        "label": "Rectangle",
+        "points": [
+          {"x": -1, "y": -1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": -1},
+          {"x": -1, "y": 1},
+          {"x": 1, "y": 1}
+        ]
+      },
+      "color": "#8d8d8dff",
+      "tileX": false,
+      "tileY": false,
+      "tileSize": {"x": 16, "y": 16},
+      "resizeableX": false,
+      "resizeableY": false,
+      "rotatable": false,
+      "rotationDegrees": 360,
+      "canFlipX": false,
+      "canFlipY": false,
+      "canSetColor": false,
+      "hasNodes": false,
+      "nodeLimit": 0,
+      "nodeDisplay": 0,
+      "nodeGhost": true,
+      "tags": [],
+      "values": []
     }
   ],
   "tilesets": [
-    {"label": "dungeonTiles", "path": "../images/tiles.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAQCAYAAABQrvyxAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODRBQjNDODZENDhCMTFFMzk5N0RDMzAxQTc5NEM5RkMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODRBQjNDODdENDhCMTFFMzk5N0RDMzAxQTc5NEM5RkMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4NEFCM0M4NEQ0OEIxMUUzOTk3REMzMDFBNzk0QzlGQyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4NEFCM0M4NUQ0OEIxMUUzOTk3REMzMDFBNzk0QzlGQyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PrOLMN8AAACUSURBVHja7JWhDoAgEEBPRrERbVYCX+If8Z8Eqo2IyYi7wOYYTncYuI3XD94bDKaUErSwWZtWY0izu3NAnc3zEhpBAVyIQvAeWuKPEEAAQ7I8IjjLswso5RHZq2iNUp7lFRoBI2AEQN+vEL5A+EM/MSvV7wm8ySNnjH0GfJGvRQhu8mWE/GPz2g/5hUVrkvw94hJgALO2Vr1s43dIAAAAAElFTkSuQmCC", "tileWidth": 16, "tileHeight": 16, "tileSeparationX": 0, "tileSeparationY": 0, "tileMarginX": 0, "tileMarginY": 0}
+    {"label": "tiles", "path": "../../images/tiles/procGenTiles.png", "image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAQCAYAAADeWHeIAAADDElEQVR42u2Z227aQBCGwTanQkENAju0gJJwCkEqDUUlVQ6K1CjpRaJIiZIoV7noRR8hr9DnKM/TV5rOuNgyxmvvrqGyEUgjIWNba//fzPyzJBIhP99fX+HndCoVYa61rsclzEcyCUkKRfkXqgpKKgVaPg95XYdqrwftkxP4fH9vnv/7T9eMb79qdljHZGL6Y9eMMPf4nxFW/4QlhEx8ur0NJf7Xl5dF8VF0ElxJp0HNZEDN5SBVLELeMEzxW8fHMLq7s69xim9993thfpBY4jsj6mDEEgBL/DkASHzMdjWbhXSpBNlyGXKVipn1pXod9P39BfEp3IL6CeysEu5zWMIHgREgzlyV2gDgEt8GYCa+htn+BkXf2tmBardrir49GED98BA6Z2d22XcGS2iW8O5zvMT1ynxRAILWyHMdzz1iBYBbfBOAWdmnzCfxK50O7B4dQe/8HPoXFzC4vISP19fw5elJ6MUEhRcAfoLLZr7IGlnP5PeskQSAdb5bfAoyfNTzqexT5pP4rCyQAUDUHPIKz4LBva5ltYD1BYBMHxo+6vlU9inzvYRW0AiKAuBV8mUA4J0SvNa0LB+w1gCQ2yfDRz2fyv6C+NgetlotbgC8Mt4PgKCyz2oPAmV6AwATgJn5I7dPhm9wdTUvPv1Wq4F+cMAFgN8EsCrxZcUL6w3WAgCz/2N5p1GvMRrB8ObGfuA0toViowFlNIbv8bdlmkALCtHxb5UAyHid2AOgFQpQMAww+n3oYv+fPD+bD/wWDeH2cAgfxmNoTiawh2Og9TKSmmZWDmofMgbQ6zjv+CezGSQCgB8QsQDAOs4KNwAkPvX+Ngo8fnwMdP3UDjJYGWhrmMwjz44fz0YRTysIUwF4IPDLfJ8RMToABInvBYGOmd8+PYXxwwP36FdsNiFbrUIKR0ceE8g7Bi4LgLCjqwhIkQGAV3w3BLTDJyK+FSVsEVQNwppA3vnfyxBu/guYASAqvhMCnrLPinc4GoqILLoPILNBFDsAWOaMJ5wgyIas+Kv6o8WZ5UFwRAGAv276N+iJJnpdAAAAAElFTkSuQmCC", "tileWidth": 16, "tileHeight": 16, "tileSeparationX": 0, "tileSeparationY": 0, "tileMarginX": 0, "tileMarginY": 0}
   ]
 }

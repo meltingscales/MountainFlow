@@ -1,5 +1,5 @@
 {
-  "name": "MountainFlow",
+  "name": "MountainFlow dungeon",
   "ogmoVersion": "3.4.0",
   "levelPaths": ["."],
   "backgroundColor": "#282c34ff",

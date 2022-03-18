@@ -11,12 +11,12 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.system.FlxSound;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxColor;
-import ui.CombatHUD;
-import ui.DungeonHUD;
+import ui.HUDCombat;
+import ui.HUDDungeon;
 
 using flixel.util.FlxSpriteUtil;
 
-class PlayDungeonsState extends FlxState
+class StatePlayDungeons extends FlxState
 {
 	var player:Player;
 
@@ -28,7 +28,7 @@ class PlayDungeonsState extends FlxState
 	var coins:FlxTypedGroup<Coin>;
 	var enemies:FlxTypedGroup<Enemy>;
 
-	var dungeonHUD:DungeonHUD;
+	var dungeonHUD:HUDDungeon;
 
 	var money:Int = 0;
 	var health:Int = 3;
@@ -37,7 +37,7 @@ class PlayDungeonsState extends FlxState
 	var specialTileY = 18;
 
 	var inCombat:Bool = false;
-	var combatHud:CombatHUD;
+	var combatHud:HUDCombat;
 
 	var ending:Bool;
 	var won:Bool;
@@ -88,12 +88,12 @@ class PlayDungeonsState extends FlxState
 		walls.follow();
 
 		// test to see if we can programmatically set tiles
-		walls.setTile(specialTileX, specialTileY, DungeonTiles.BURNT_DUNGEON);
+		walls.setTile(specialTileX, specialTileY, TilesDungeon.BURNT_DUNGEON);
 
-		walls.setTileProperties(DungeonTiles.VOID, NONE); // air
-		walls.setTileProperties(DungeonTiles.FLOOR, NONE); // floor
-		walls.setTileProperties(DungeonTiles.NORMAL_DUNGEON, ANY); // normal tile
-		walls.setTileProperties(DungeonTiles.BURNT_DUNGEON, ANY); // burnt tile
+		walls.setTileProperties(TilesDungeon.VOID, NONE); // air
+		walls.setTileProperties(TilesDungeon.FLOOR, NONE); // floor
+		walls.setTileProperties(TilesDungeon.NORMAL_DUNGEON, ANY); // normal tile
+		walls.setTileProperties(TilesDungeon.BURNT_DUNGEON, ANY); // burnt tile
 
 		add(walls);
 
@@ -111,10 +111,10 @@ class PlayDungeonsState extends FlxState
 
 		FlxG.camera.follow(player, TOPDOWN, 1);
 
-		dungeonHUD = new DungeonHUD();
+		dungeonHUD = new HUDDungeon();
 		add(dungeonHUD);
 
-		combatHud = new CombatHUD();
+		combatHud = new HUDCombat();
 		add(combatHud);
 
 		super.create();
@@ -166,7 +166,7 @@ class PlayDungeonsState extends FlxState
 			// test dynamic tilemap updates: when user presses spacebar, randomize a tile
 			if (spacebar)
 			{
-				walls.setTile(specialTileX, specialTileY, FlxG.random.int(DungeonTiles.VOID, DungeonTiles.BURNT_DUNGEON));
+				walls.setTile(specialTileX, specialTileY, FlxG.random.int(TilesDungeon.VOID, TilesDungeon.BURNT_DUNGEON));
 				trace("random tile update at " + specialTileX + "," + specialTileY + " :P");
 				for (_ in 1...4)
 				{
@@ -218,6 +218,6 @@ class PlayDungeonsState extends FlxState
 
 	function doneFadeOut()
 	{
-		FlxG.switchState(new GameOverState(won, money));
+		FlxG.switchState(new StateGameOver(won, money));
 	}
 }

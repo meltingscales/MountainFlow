@@ -37,7 +37,7 @@ enum Choice
 	FLEE;
 }
 
-class CombatHUD extends FlxTypedGroup<FlxSprite>
+class HUDCombat extends FlxTypedGroup<FlxSprite>
 {
 	// These public variables will be used after combat has finished to help tell us what happened.
 	public var enemy:Enemy; // we will pass the enemySprite that the playerSprite touched to initialize combat, and this will let us also know which enemySprite to kill, etc.

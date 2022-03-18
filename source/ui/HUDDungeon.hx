@@ -8,7 +8,7 @@ import flixel.util.FlxColor;
 
 using flixel.util.FlxSpriteUtil;
 
-class DungeonHUD extends FlxTypedGroup<FlxSprite>
+class HUDDungeon extends FlxTypedGroup<FlxSprite>
 {
 	var background:FlxSprite;
 	var healthCounter:FlxText;

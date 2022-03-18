@@ -60,6 +60,8 @@ Read <https://haxeflixel.com/documentation/visual-studio-code/>
 
 - <https://www.pyxeledit.com/>
   - <https://www.pyxeledit.com/learn.php>
+- <https://itch.io/game-assets/free/tag-tileset>
+
 
 <!--
 - <https://www.aseprite.org/trial/>

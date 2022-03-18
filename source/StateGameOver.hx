@@ -9,7 +9,7 @@ import flixel.util.FlxAxes;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
 
-class GameOverState extends FlxState
+class StateGameOver extends FlxState
 {
 	var score:Int = 0; // number of coins we've collected
 	var win:Bool; // if we won or lost
@@ -103,13 +103,13 @@ class GameOverState extends FlxState
 	}
 
 	/**
-	 * When the user hits the main menu button, it should fade out and then take them back to the MenuState
+	 * When the user hits the main menu button, it should fade out and then take them back to the StateMenu
 	 */
 	function switchToMainMenu():Void
 	{
 		FlxG.camera.fade(FlxColor.BLACK, 0.33, false, function()
 		{
-			FlxG.switchState(new MenuState());
+			FlxG.switchState(new StateMenu());
 		});
 	}
 }

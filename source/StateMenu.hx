@@ -5,16 +5,16 @@ import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 
-class MenuState extends FlxState
+class StateMenu extends FlxState
 {
 	function clickDungeons()
 	{
-		FlxG.switchState(new PlayDungeonsState());
+		FlxG.switchState(new StatePlayDungeons());
 	}
 
 	function clickProcGen()
 	{
-		FlxG.switchState(new PlayProcGenState());
+		FlxG.switchState(new StatePlayProcGen());
 	}
 
 	override public function create()

@@ -8,9 +8,8 @@ import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.tile.FlxTilemap;
-import ui.DungeonHUD;
 
-class PlayProcGenState extends FlxState
+class StatePlayProcGen extends FlxState
 {
 	var player:Player;
 
@@ -44,7 +43,7 @@ class PlayProcGenState extends FlxState
 		map = new FlxOgmo3Loader(AssetPaths.procGenMap__ogmo, AssetPaths.procGenLevel__json);
 		walls = map.loadTilemap(AssetPaths.procGenTiles__png, "walls");
 		walls.follow();
-		ProcGenTiles.setAllTileProperties(walls);
+		TilesProcGen.setAllTileProperties(walls);
 		add(walls);
 
 		items = new FlxTypedGroup<Item>();
