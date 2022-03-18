@@ -1,6 +1,7 @@
 package;
 
 import entity.Coin;
+import entity.Item;
 import entity.Player;
 import flixel.FlxG;
 import flixel.FlxState;
@@ -15,7 +16,7 @@ class PlayProcGenState extends FlxState
 
 	var map:FlxOgmo3Loader;
 	var walls:FlxTilemap;
-	var items:FlxTypedGroup<Coin>;
+	var items:FlxTypedGroup<Item>;
 
 	function placeEntities(entity:EntityData)
 	{
@@ -27,8 +28,8 @@ class PlayProcGenState extends FlxState
 			case "player":
 				player.setPosition(x, y);
 
-			case "monster energy":
-				items.add(new Coin(x + 4, y + 4));
+			case "item":
+				items.add(new Item(x + 4, y + 4));
 
 				// case "enemy":
 				// 	enemies.add(new Enemy(x + 4, y, REGULAR));
@@ -43,15 +44,10 @@ class PlayProcGenState extends FlxState
 		map = new FlxOgmo3Loader(AssetPaths.procGenMap__ogmo, AssetPaths.procGenLevel__json);
 		walls = map.loadTilemap(AssetPaths.procGenTiles__png, "walls");
 		walls.follow();
-
-		walls.setTileProperties(Tiles.VOID, NONE); // air
-		walls.setTileProperties(Tiles.FLOOR, NONE); // floor
-		walls.setTileProperties(Tiles.NORMAL_DUNGEON, ANY); // normal tile
-		walls.setTileProperties(Tiles.BURNT_DUNGEON, ANY); // burnt tile
-
+		ProcGenTiles.setAllTileProperties(walls);
 		add(walls);
 
-		items = new FlxTypedGroup<Coin>();
+		items = new FlxTypedGroup<Item>();
 		add(items);
 
 		player = new Player();

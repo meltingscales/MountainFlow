@@ -35,7 +35,7 @@ class MenuState extends FlxState
 		procGenButton.width *= 2;
 		add(procGenButton);
 
-		var helpText = new FlxText(10, 10, "Instructions:
+		var helpText = new FlxText(10, 10, "Welcome to " + Settings.NAME + " v" + Settings.VERSION + "\nInstructions:
 Use WASD/arrows and Z/X/SPACE :3c");
 		// helpText.screenCenter();
 		add(helpText);

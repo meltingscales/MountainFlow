@@ -88,12 +88,12 @@ class PlayDungeonsState extends FlxState
 		walls.follow();
 
 		// test to see if we can programmatically set tiles
-		walls.setTile(specialTileX, specialTileY, Tiles.BURNT_DUNGEON);
+		walls.setTile(specialTileX, specialTileY, DungeonTiles.BURNT_DUNGEON);
 
-		walls.setTileProperties(Tiles.VOID, NONE); // air
-		walls.setTileProperties(Tiles.FLOOR, NONE); // floor
-		walls.setTileProperties(Tiles.NORMAL_DUNGEON, ANY); // normal tile
-		walls.setTileProperties(Tiles.BURNT_DUNGEON, ANY); // burnt tile
+		walls.setTileProperties(DungeonTiles.VOID, NONE); // air
+		walls.setTileProperties(DungeonTiles.FLOOR, NONE); // floor
+		walls.setTileProperties(DungeonTiles.NORMAL_DUNGEON, ANY); // normal tile
+		walls.setTileProperties(DungeonTiles.BURNT_DUNGEON, ANY); // burnt tile
 
 		add(walls);
 
@@ -166,7 +166,7 @@ class PlayDungeonsState extends FlxState
 			// test dynamic tilemap updates: when user presses spacebar, randomize a tile
 			if (spacebar)
 			{
-				walls.setTile(specialTileX, specialTileY, FlxG.random.int(Tiles.VOID, Tiles.BURNT_DUNGEON));
+				walls.setTile(specialTileX, specialTileY, FlxG.random.int(DungeonTiles.VOID, DungeonTiles.BURNT_DUNGEON));
 				trace("random tile update at " + specialTileX + "," + specialTileY + " :P");
 				for (_ in 1...4)
 				{

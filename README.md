@@ -60,9 +60,12 @@ Read <https://haxeflixel.com/documentation/visual-studio-code/>
 
 - <https://www.pyxeledit.com/>
   - <https://www.pyxeledit.com/learn.php>
+
+<!--
 - <https://www.aseprite.org/trial/>
 - <https://www.gimp.org/>
 - <https://www.piskelapp.com/>
+-->
 
 ## Sound
 

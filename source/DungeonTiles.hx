@@ -1,5 +1,5 @@
 // stores tile info
-final class Tiles
+final class DungeonTiles
 {
 	public static var VOID = 0;
 	public static var FLOOR = 1;
