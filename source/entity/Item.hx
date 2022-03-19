@@ -27,6 +27,9 @@ class Item extends FlxSprite
 	{
 		super(x, y);
 
+		this.name = name;
+		this.itemId = itemId;
+
 		if (graphicPath == null)
 		{
 			graphicPath = AssetPaths.monsterEnergy__png;

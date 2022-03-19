@@ -73,11 +73,13 @@ class StatePlayProcGen extends FlxState
 		// test dynamic tilemap updates: when user presses spacebar, they mine a tile
 		if (spacebar)
 		{
-			var x = 14;
-			var y = 14;
+			var x = Std.int(player.x / Settings.TILE_WIDTH);
+			var y = Std.int(player.y / Settings.TILE_WIDTH);
 
 			var tileUnder = walls.getTile(x, y);
-			trace("under " + x + y + " we get tile" + tileUnder);
+			trace("under " + x + "," + y + " we get tile " + tileUnder);
+			var drop = TilesProcGen.getTileDrop(tileUnder);
+			trace("we would this as a drop: " + drop);
 
 			for (_ in 1...4)
 			{

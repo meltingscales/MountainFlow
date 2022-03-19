@@ -14,11 +14,14 @@ class TilesProcGen
 	public static var BLOCK_ORE_1 = 6;
 	public static var BLOCK_ORE_2 = 7;
 
-	public static function getTileDrop(id:Int):Item
+	public static function getTileDrop(id:Int):Null<Item>
 	{
-		var drops = [FLOOR_GRASS => Items.Stick(), BLOCK_DIRT => Items.DirtGlob()];
-
-		return drops.get(id);
+		return [
+			FLOOR_GRASS => Items.Stick(),
+			BLOCK_DIRT => Items.DirtGlob(),
+			BLOCK_ORE_1 => Items.OreChunk1(),
+			BLOCK_ORE_2 => Items.OreChunk2()
+		][id];
 	}
 
 	public static function setAllTileProperties(walls:FlxTilemap)
