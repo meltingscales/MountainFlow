@@ -73,24 +73,38 @@ class StatePlayProcGen extends FlxState
 		// test dynamic tilemap updates: when user presses spacebar, they mine a tile
 		if (spacebar)
 		{
-			var x = Std.int(player.x / Settings.TILE_WIDTH);
-			var y = Std.int(player.y / Settings.TILE_WIDTH);
+			var x = (player.x / Settings.TILE_WIDTH);
+			var y = (player.y / Settings.TILE_WIDTH);
 
-			var tileUnder = walls.getTile(x, y);
+			var xi = Std.int(x);
+			var yi = Std.int(y);
+
+			var tx = x * Settings.TILE_WIDTH;
+			var ty = y * Settings.TILE_HEIGHT;
+
+			// this is a test -- put the item a bit above so it doesnt get SLORPED up immediately by
+
+			var tileUnder = walls.getTile(xi, yi);
 			trace("under " + x + "," + y + " we get tile " + tileUnder);
 			var drop = TilesProcGen.getTileDrop(tileUnder);
 			trace("we would this as a drop: " + drop);
 
 			for (_ in 1...4)
 			{
-				add(new MagicPoof(x * Settings.TILE_WIDTH, y * Settings.TILE_HEIGHT));
+				add(new MagicPoof(tx, ty));
+				if (drop != null)
+				{
+					drop.x = tx;
+					drop.y = ty;
+					items.add(drop);
+				}
 			}
 		}
 
 		super.update(gameTickElapsed);
 	}
 
-	function playerTouchItem(player:Player, item:Coin)
+	function playerTouchItem(player:Player, item:Item)
 	{
 		if (player.alive && player.exists && item.alive && item.exists)
 		{
