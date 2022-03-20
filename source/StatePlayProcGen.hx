@@ -85,9 +85,9 @@ class StatePlayProcGen extends FlxState
 			// this is a test -- put the item a bit above so it doesnt get SLORPED up immediately by
 
 			var tileUnder = walls.getTile(xi, yi);
-			trace("under " + x + "," + y + " we get tile " + tileUnder);
+			// trace("under " + x + "," + y + " we get tile " + tileUnder);
 			var drop = TilesProcGen.getTileDrop(tileUnder);
-			trace("we would this as a drop: " + drop);
+			// trace("we would this as a drop: " + drop);
 
 			for (_ in 1...4)
 			{
@@ -96,6 +96,10 @@ class StatePlayProcGen extends FlxState
 				{
 					drop.x = tx;
 					drop.y = ty;
+
+					drop.x += (1 * Settings.TILE_WIDTH); // offset it a little so we don't immediately pick it up
+					drop.y += (1 * Settings.TILE_HEIGHT); // offset it a little so we don't immediately pick it up
+
 					items.add(drop);
 				}
 			}
@@ -108,8 +112,10 @@ class StatePlayProcGen extends FlxState
 	{
 		if (player.alive && player.exists && item.alive && item.exists)
 		{
+			player.inventory.add(item);
 			item.kill();
-			// player.inventory.add(item);
+
+			trace(player.inventory.pretty_print());
 		}
 	}
 }

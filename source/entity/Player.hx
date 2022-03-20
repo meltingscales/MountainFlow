@@ -1,10 +1,10 @@
 package entity;
 
+import Settings.*;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.system.FlxSound;
-import flixel.util.FlxColor;
 import util.IHateMath;
 
 class Player extends FlxSprite
@@ -12,6 +12,8 @@ class Player extends FlxSprite
 	static inline var SPEED:Float = 200;
 
 	var stepSound:FlxSound;
+
+	public var inventory:model.Inventory;
 
 	public function new(x:Float = 0, y:Float = 0)
 	{
@@ -28,6 +30,9 @@ class Player extends FlxSprite
 		drag.x = drag.y = 1600;
 
 		setSize(8, 8);
+
+		this.inventory = new model.Inventory();
+
 		offset.set(4, 4);
 	}
 
@@ -37,12 +42,17 @@ class Player extends FlxSprite
 		super.update(gameTickElapsed);
 	}
 
+	function shouldMove()
+	{
+		return ((velocity.x != 0 || velocity.y != 0) && this.touching == NONE);
+	}
+
 	function updateMovement()
 	{
-		var up = FlxG.keys.anyPressed([UP, W]);
-		var down = FlxG.keys.anyPressed([DOWN, S]);
-		var left = FlxG.keys.anyPressed([LEFT, A]);
-		var right = FlxG.keys.anyPressed([RIGHT, D]);
+		var up = FlxG.keys.anyPressed(KEYS_MOVE_UP);
+		var down = FlxG.keys.anyPressed(KEYS_MOVE_DOWN);
+		var left = FlxG.keys.anyPressed(KEYS_MOVE_LEFT);
+		var right = FlxG.keys.anyPressed(KEYS_MOVE_RIGHT);
 
 		if (up && down)
 		{
@@ -53,9 +63,9 @@ class Player extends FlxSprite
 			left = right = false;
 		}
 
-		var userInputsMoveCmd = (up || down || left || right);
+		var userInputTheMoveCmd = (up || down || left || right);
 
-		if (userInputsMoveCmd)
+		if (userInputTheMoveCmd)
 		{
 			var angle = IHateMath.angleOfTheDangle(up, down, left, right);
 			velocity.set(SPEED, 0);
@@ -70,7 +80,7 @@ class Player extends FlxSprite
 			else if (right)
 				facing = RIGHT;
 
-			if ((velocity.x != 0 || velocity.y != 0) && touching == NONE)
+			if (this.shouldMove())
 			{
 				stepSound.play();
 
