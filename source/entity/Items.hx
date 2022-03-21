@@ -4,11 +4,29 @@ import entity.Item;
 
 class Items
 {
-	static var ID_MONSTER_ENERGY = 0;
-	static var ID_STICK = 1;
-	static var ID_DIRT_GLOB = 2;
-	static var ID_ORE_CHUNK1 = 3;
-	static var ID_ORE_CHUNK2 = 3;
+	public static var ID_MONSTER_ENERGY = 0;
+	public static var ID_STICK = 1;
+	public static var ID_DIRT_GLOB = 2;
+	public static var ID_ORE_CHUNK1 = 3;
+	public static var ID_ORE_CHUNK2 = 3;
+
+	public static var BY_ID_MAP = [
+		ID_MONSTER_ENERGY => MonsterEnergy,
+		ID_STICK => Stick,
+		ID_DIRT_GLOB => DirtGlob,
+		ID_ORE_CHUNK1 => OreChunk1,
+		ID_ORE_CHUNK2 => OreChunk2,
+	];
+
+	public static function by_id(id:Int):Item
+	{
+		if (BY_ID_MAP.exists(id))
+		{
+			var fn = BY_ID_MAP[id];
+			return fn();
+		}
+		return null;
+	}
 
 	public static function Stick(x = 0, y = 0)
 	{

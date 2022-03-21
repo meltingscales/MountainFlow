@@ -8,15 +8,22 @@ import flixel.FlxG;
 import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
+import ui.HUDInventory;
 
 class StatePlayProcGen extends FlxState
 {
+	// you!
 	var player:Player;
 
+	// entities
 	var map:FlxOgmo3Loader;
 	var walls:FlxTilemap;
 	var items:FlxTypedGroup<Item>;
+
+	// gooey
+	var HUDinventory:HUDInventory;
 
 	function placeEntities(entity:EntityData)
 	{
@@ -41,18 +48,22 @@ class StatePlayProcGen extends FlxState
 
 	override public function create()
 	{
-		map = new FlxOgmo3Loader(AssetPaths.procGenMap__ogmo, AssetPaths.procGenLevel__json);
-		walls = map.loadTilemap(AssetPaths.procGenTiles__png, "walls");
+		this.map = new FlxOgmo3Loader(AssetPaths.procGenMap__ogmo, AssetPaths.procGenLevel__json);
+		this.walls = map.loadTilemap(AssetPaths.procGenTiles__png, "walls");
 		walls.follow();
 		TilesProcGen.setAllTileProperties(walls);
 		add(walls);
 
-		items = new FlxTypedGroup<Item>();
+		this.items = new FlxTypedGroup<Item>();
 		add(items);
 
-		player = new Player();
+		this.player = new Player();
 		map.loadEntities(placeEntities, "entities");
 		add(player);
+
+		this.HUDinventory = new HUDInventory();
+		// helpText.screenCenter();
+		add(HUDinventory);
 
 		FlxG.camera.follow(player, TOPDOWN, 1);
 
@@ -87,7 +98,7 @@ class StatePlayProcGen extends FlxState
 			var tileUnder = walls.getTile(xi, yi);
 			// trace("under " + x + "," + y + " we get tile " + tileUnder);
 			var drop = TilesProcGen.getTileDrop(tileUnder);
-			// trace("we would this as a drop: " + drop);
+			trace("we would get this as a drop: " + drop.name);
 
 			trace("casting a ray from " + player.getMidpoint() + " to " + player.getPointInFrontOfMe());
 			var tileInFront = walls.ray(player.getMidpoint(), player.getPointInFrontOfMe());
@@ -121,9 +132,12 @@ class StatePlayProcGen extends FlxState
 		if (player.alive && player.exists && item.alive && item.exists)
 		{
 			player.inventory.add(item);
+			trace("just picked up " + item.name);
 			item.kill();
 
 			trace(player.inventory.pretty_print());
+			// show player their inventory
+			HUDinventory.updateHUD(player.inventory);
 		}
 	}
 }

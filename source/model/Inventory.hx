@@ -1,6 +1,8 @@
 package model;
 
 import entity.Item;
+import entity.Items;
+import util.Etc.*;
 
 class Inventory
 {
@@ -16,6 +18,11 @@ class Inventory
 		{
 			this.data = content;
 		}
+	}
+
+	public function num_items()
+	{
+		return this.data.length;
 	}
 
 	public function add(item:Item)
@@ -35,6 +42,29 @@ class Inventory
 
 	public function pretty_print():String
 	{
-		return "lol todo.. but we do have " + this.data.length + " items, and we most recently picked up " + this.last_item().name;
+		var by_id = new Map();
+
+		for (item in this.data)
+		{
+			if (!by_id.exists(item.itemId))
+			{
+				by_id[item.itemId] = 0;
+			}
+
+			by_id[item.itemId] += 1;
+		}
+
+		var ret = "" + this.num_items() + " items in total\n";
+
+		for (id in by_id)
+		{
+			var count = by_id[id];
+			var item = Items.by_id(id);
+			assert(item != null);
+
+			ret += "" + count + " of " + item.name + "\n";
+		}
+
+		return ret;
 	}
 }
