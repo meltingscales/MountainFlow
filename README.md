@@ -9,6 +9,7 @@ A successor to <https://github.com/HenryFBP/LithicRivers>, an unfinished ASCII g
 Visit this page to play the latest commit from the branch `release` in your browser:
 
 - <https://henryfbp.github.io/MountainFlow/>
+- Please note you can press `F12` to see extra debug information in your browser.
 
 Download a release for your platform at <https://github.com/HenryFBP/MountainFlow/releases>
 
