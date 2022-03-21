@@ -1,5 +1,9 @@
 package util;
 
+import flixel.math.FlxPoint;
+import flixel.util.FlxDirection;
+import flixel.util.FlxDirectionFlags;
+
 final class IHateMath
 {
 	public static function angleOfTheDangle(up:Bool, down:Bool, left:Bool, right:Bool):Float
@@ -38,5 +42,17 @@ final class IHateMath
 			angle = 0;
 		}
 		return angle;
+	}
+
+	public static final DIRECTION_POINT_MAP = [
+		LEFT => new FlxPoint(-1, 0),
+		RIGHT => new FlxPoint(1, 0),
+		UP => new FlxPoint(0, 1),
+		DOWN => new FlxPoint(0, -1)
+	];
+
+	public static function directionToPoint(direction:FlxDirectionFlags)
+	{
+		return DIRECTION_POINT_MAP[direction];
 	}
 }

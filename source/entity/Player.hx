@@ -15,6 +15,16 @@ class Player extends FlxSprite
 
 	public var inventory:model.Inventory;
 
+	public function facingToPoint()
+	{
+		return IHateMath.directionToPoint(this.facing);
+	}
+
+	public function getPointInFrontOfMe()
+	{
+		return this.getMidpoint().addPoint(this.facingToPoint());
+	}
+
 	public function new(x:Float = 0, y:Float = 0)
 	{
 		super(x, y);
@@ -93,7 +103,6 @@ class Player extends FlxSprite
 					case DOWN:
 						animation.play("d");
 					case _:
-						"";
 				}
 			}
 		}

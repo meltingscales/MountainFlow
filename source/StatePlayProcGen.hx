@@ -89,19 +89,27 @@ class StatePlayProcGen extends FlxState
 			var drop = TilesProcGen.getTileDrop(tileUnder);
 			// trace("we would this as a drop: " + drop);
 
-			for (_ in 1...4)
+			trace("casting a ray from " + player.getMidpoint() + " to " + player.getPointInFrontOfMe());
+			var tileInFront = walls.ray(player.getMidpoint(), player.getPointInFrontOfMe());
+			// TODO: raycast and get the tile the player is looking at, instead of just mining whatever's at their feet
+
+			trace("tileInFront = " + tileInFront);
+
+			if (drop != null)
 			{
-				add(new MagicPoof(tx, ty));
-				if (drop != null)
+				// show player feedback that an item dropped
+				for (_ in 1...4)
 				{
-					drop.x = tx;
-					drop.y = ty;
-
-					drop.x += (1 * Settings.TILE_WIDTH); // offset it a little so we don't immediately pick it up
-					drop.y += (1 * Settings.TILE_HEIGHT); // offset it a little so we don't immediately pick it up
-
-					items.add(drop);
+					add(new MagicPoof(tx, ty));
 				}
+
+				drop.x = tx;
+				drop.y = ty;
+
+				drop.x += (1 * Settings.TILE_WIDTH); // offset it a little so we don't immediately pick it up
+				drop.y += (1 * Settings.TILE_HEIGHT); // offset it a little so we don't immediately pick it up
+
+				items.add(drop);
 			}
 		}
 
