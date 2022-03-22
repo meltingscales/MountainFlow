@@ -8,6 +8,7 @@ import flixel.FlxG;
 import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
 import ui.HUDInventory;
@@ -98,13 +99,16 @@ class StatePlayProcGen extends FlxState
 			var tileUnder = walls.getTile(xi, yi);
 			// trace("under " + x + "," + y + " we get tile " + tileUnder);
 			var drop = TilesProcGen.getTileDrop(tileUnder);
-			trace("we would get this as a drop: " + drop.name);
+			// trace("we would get this as a drop: " + drop.name);
 
 			trace("casting a ray from " + player.getMidpoint() + " to " + player.getPointInFrontOfMe());
-			var tileInFront = walls.ray(player.getMidpoint(), player.getPointInFrontOfMe());
-			// TODO: raycast and get the tile the player is looking at, instead of just mining whatever's at their feet
-
-			trace("tileInFront = " + tileInFront);
+			var hitLocation = FlxPoint.get();
+			var didHitTile = !(walls.ray(player.getMidpoint(), player.getPointInFrontOfMe(), hitLocation));
+			trace("didHitTile = " + didHitTile);
+			if (didHitTile)
+			{
+				trace("    hitLocation = " + hitLocation);
+			}
 
 			if (drop != null)
 			{
@@ -132,10 +136,9 @@ class StatePlayProcGen extends FlxState
 		if (player.alive && player.exists && item.alive && item.exists)
 		{
 			player.inventory.add(item);
-			trace("just picked up " + item.name);
+			// trace("just picked up " + item.name);
 			item.kill();
 
-			trace(player.inventory.pretty_print());
 			// show player their inventory
 			HUDinventory.updateHUD(player.inventory);
 		}

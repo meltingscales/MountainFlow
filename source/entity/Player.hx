@@ -22,7 +22,10 @@ class Player extends FlxSprite
 
 	public function getPointInFrontOfMe()
 	{
-		return this.getMidpoint().addPoint(this.facingToPoint());
+		var offset = this.facingToPoint();
+		offset.x = offset.x * 16;
+		offset.y = offset.y * 16;
+		return this.getMidpoint().addPoint(offset);
 	}
 
 	public function new(x:Float = 0, y:Float = 0)

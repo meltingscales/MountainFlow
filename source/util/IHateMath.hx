@@ -53,6 +53,6 @@ final class IHateMath
 
 	public static function directionToPoint(direction:FlxDirectionFlags)
 	{
-		return DIRECTION_POINT_MAP[direction];
+		return DIRECTION_POINT_MAP[direction].copyTo(new FlxPoint());
 	}
 }
