@@ -102,12 +102,16 @@ class StatePlayProcGen extends FlxState
 			// trace("we would get this as a drop: " + drop.name);
 
 			trace("casting a ray from " + player.getMidpoint() + " to " + player.getPointInFrontOfMe());
-			var hitLocation = FlxPoint.get();
+			var hitLocation = FlxPoint.get(); // we are passing this by reference...
 			var didHitTile = !(walls.ray(player.getMidpoint(), player.getPointInFrontOfMe(), hitLocation));
 			trace("didHitTile = " + didHitTile);
 			if (didHitTile)
 			{
 				trace("    hitLocation = " + hitLocation);
+				var hx = Std.int(hitLocation.x / 16);
+				var hy = Std.int(hitLocation.y / 16);
+				var tileThatGotHit = walls.getTile(hx, hy);
+				trace("    tileThatGotHit = " + tileThatGotHit);
 			}
 
 			if (drop != null)
