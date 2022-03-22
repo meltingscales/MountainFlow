@@ -42,25 +42,24 @@ class Inventory
 
 	public function pretty_print():String
 	{
-		var by_id = new Map();
+		var id_counts = new Map();
 
 		for (item in this.data)
 		{
-			if (!by_id.exists(item.itemId))
+			if (!id_counts.exists(item.itemId))
 			{
-				by_id[item.itemId] = 0;
+				id_counts[item.itemId] = 0;
 			}
 
-			by_id[item.itemId] += 1;
+			id_counts[item.itemId] += 1;
 		}
 
 		var ret = "" + this.num_items() + " items in total\n";
 
-		for (id in by_id)
+		for (key in id_counts.keys())
 		{
-			var count = by_id[id];
-			var item = Items.by_id(id);
-			assert(item != null);
+			var count = id_counts[key];
+			var item = Items.by_id(key);
 
 			ret += "" + count + " of " + item.name + "\n";
 		}
