@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -41,6 +41,7 @@ jobs:
 
           echo "Done downloading."
           echo -ne 'y\n' | haxelib run lime setup
+          echo "Done!"
 
       - name: Build
         run: |
