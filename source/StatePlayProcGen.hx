@@ -5,12 +5,15 @@ import entity.Item;
 import entity.MagicPoof;
 import entity.Player;
 import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
 import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
+import flixel.util.FlxColor;
+import flixel.util.FlxSpriteUtil;
 import ui.HUDInventory;
 
 class StatePlayProcGen extends FlxState
@@ -22,6 +25,9 @@ class StatePlayProcGen extends FlxState
 	var map:FlxOgmo3Loader;
 	var walls:FlxTilemap;
 	var items:FlxTypedGroup<Item>;
+
+	// debug line
+	var line:FlxSprite;
 
 	// gooey
 	var HUDinventory:HUDInventory;
@@ -66,6 +72,10 @@ class StatePlayProcGen extends FlxState
 		// helpText.screenCenter();
 		add(HUDinventory);
 
+		this.line = new FlxSprite();
+		line.makeGraphic(FlxG.width, FlxG.height, 0);
+		add(this.line);
+
 		FlxG.camera.follow(player, TOPDOWN, 1);
 
 		super.create();
@@ -101,15 +111,23 @@ class StatePlayProcGen extends FlxState
 			var drop = TilesProcGen.getTileDrop(tileUnder);
 			// trace("we would get this as a drop: " + drop.name);
 
-			trace("casting a ray from " + player.getMidpoint() + " to " + player.getPointInFrontOfMe());
-			var hitLocation = FlxPoint.get(); // we are passing this by reference...
-			var didHitTile = !(walls.ray(player.getMidpoint(), player.getPointInFrontOfMe(), hitLocation));
+			var center = player.getMidpoint();
+			var endPoint = player.getPointInFrontOfMe();
+			trace("casting a ray from " + center + " to " + endPoint);
+
+			var collidePoint = FlxPoint.get(); // we are passing this by reference...
+			var didHitTile = !(walls.ray(center, endPoint, collidePoint));
+
+			FlxSpriteUtil.fill(line, 0);
+			FlxSpriteUtil.drawLine(line, center.x, center.y, endPoint.x, endPoint.y, {thickness: 2, color: FlxColor.BLUE});
+
 			trace("didHitTile = " + didHitTile);
 			if (didHitTile)
 			{
-				trace("    hitLocation = " + hitLocation);
-				var hx = Std.int(hitLocation.x / 16);
-				var hy = Std.int(hitLocation.y / 16);
+				FlxSpriteUtil.drawLine(line, center.x, center.y, collidePoint.x, collidePoint.y, {thickness: 2, color: FlxColor.RED});
+				trace("    hitLocation = " + collidePoint);
+				var hx = Std.int(collidePoint.x / 16);
+				var hy = Std.int(collidePoint.y / 16);
 				var tileThatGotHit = walls.getTile(hx, hy);
 				trace("    tileThatGotHit = " + tileThatGotHit);
 			}

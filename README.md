@@ -118,5 +118,6 @@ SPECIFICALLY:
   - <https://haxeflixel.com/demos/BSPMapGen/>
   - <https://haxeflixel.com/demos/TileMap/>
   - <https://haxeflixel.com/demos/FlxCaveGenerator/>
+- <https://github.com/HaxeFlixel/snippets.haxeflixel.com/blob/master/demos/tiles/ray/source/PlayState.hx>
 - <https://github.com/Beeblerox/Simplest-Heaps-Examples>
 - <https://kinocreates.io/tutorials/haxeflixel-object-pooling/>
