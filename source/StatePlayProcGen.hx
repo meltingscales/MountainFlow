@@ -123,7 +123,11 @@ class StatePlayProcGen extends FlxState
 			FlxSpriteUtil.drawLine(line, center.x, center.y, endPoint.x, endPoint.y, {thickness: 2, color: FlxColor.BLUE});
 
 			trace("didHitTile = " + didHitTile);
-			if (didHitTile || true)
+
+			// disable trying to use walls.ray for now because for some reason it's not working
+			var whyWontRayCastWorkQwQ = true;
+
+			if (didHitTile || whyWontRayCastWorkQwQ)
 			{
 				// debug since collisions dont work, just pretend the tile in front of us is the collision
 				if (!(didHitTile))
@@ -133,30 +137,37 @@ class StatePlayProcGen extends FlxState
 
 				FlxSpriteUtil.drawLine(line, center.x, center.y, collidePoint.x, collidePoint.y, {thickness: 2, color: FlxColor.RED});
 				trace("    hitLocation = " + collidePoint);
-				var hx = Std.int(collidePoint.x / 16);
-				var hy = Std.int(collidePoint.y / 16);
-				var tileThatGotHit = walls.getTile(hx, hy);
-				trace("    tileThatGotHit = " + tileThatGotHit);
 
-				drop = TilesProcGen.getTileDrop(tileThatGotHit);
+				// in world coords
+				var hitXWC = collidePoint.x;
+				var hitYWC = collidePoint.y;
 
+				// in tile coords
+				var hitXTC = Std.int(hitXWC / Settings.TILE_WIDTH);
+				var hitYTC = Std.int(hitYWC / Settings.TILE_HEIGHT);
+
+				var tileThatGotMined = walls.getTile(hitXTC, hitYTC);
+
+				trace("    tileThatGotHit = " + tileThatGotMined);
+
+				// if the tile should get modified, change the tile...
+				var replacementTile = TilesProcGen.getTileReplacement(tileThatGotMined);
+				if (replacementTile != null)
+				{
+					walls.setTile(hitXTC, hitYTC, replacementTile);
+				}
+
+				drop = TilesProcGen.getTileDrop(tileThatGotMined);
+				// if we get anything from mining a tile...
 				if (drop != null)
 				{
-					// if something actually got dropped, delete the tile...
-					var replacementTile = TilesProcGen.getTileReplacement(tileThatGotHit);
-					if (replacementTile != null)
-					{
-						// TODO replace tile...
-					}
-
-					// show player feedback that an item dropped
-
-					drop.x = hx;
-					drop.y = hy;
+					drop.x = hitXWC;
+					drop.y = hitYWC;
 
 					// drop.x += (1 * Settings.TILE_WIDTH); // offset it a little so we don't immediately pick it up
 					// drop.y += (1 * Settings.TILE_HEIGHT); // offset it a little so we don't immediately pick it up
 
+					// show player feedback that an item dropped
 					for (_ in 1...4)
 					{
 						add(new MagicPoof(drop.x, drop.y));

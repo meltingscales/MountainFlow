@@ -24,6 +24,8 @@ class TilesProcGen
 		BLOCK_ORE_2 => OreChunk2
 	];
 
+	public static var TILE_DESTROY_MAP = [FLOOR_GRASS => FLOOR_GRASS, BLOCK_DIRT => FLOOR_GRASS];
+
 	public static function getTileDrop(id:Int):Item
 	{
 		// if it has a drop for a specific tile ID
@@ -50,5 +52,14 @@ class TilesProcGen
 		walls.setTileProperties(BLOCK_DIRT, ANY);
 		walls.setTileProperties(BLOCK_ORE_1, ANY);
 		walls.setTileProperties(BLOCK_ORE_2, ANY);
+	}
+
+	public static function getTileReplacement(tileID:Int)
+	{
+		if (TILE_DESTROY_MAP.exists(tileID))
+		{
+			return TILE_DESTROY_MAP[tileID];
+		}
+		return null;
 	}
 }
