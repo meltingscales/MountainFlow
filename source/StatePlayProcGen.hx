@@ -108,7 +108,8 @@ class StatePlayProcGen extends FlxState
 
 			var tileUnder = walls.getTile(xi, yi);
 			// trace("under " + x + "," + y + " we get tile " + tileUnder);
-			var drop = TilesProcGen.getTileDrop(tileUnder);
+			var drop = null;
+			// drop = TilesProcGen.getTileDrop(tileUnder);
 			// trace("we would get this as a drop: " + drop.name);
 
 			var center = player.getMidpoint();
@@ -122,31 +123,47 @@ class StatePlayProcGen extends FlxState
 			FlxSpriteUtil.drawLine(line, center.x, center.y, endPoint.x, endPoint.y, {thickness: 2, color: FlxColor.BLUE});
 
 			trace("didHitTile = " + didHitTile);
-			if (didHitTile)
+			if (didHitTile || true)
 			{
+				// debug since collisions dont work, just pretend the tile in front of us is the collision
+				if (!(didHitTile))
+				{
+					collidePoint.copyFrom(endPoint);
+				}
+
 				FlxSpriteUtil.drawLine(line, center.x, center.y, collidePoint.x, collidePoint.y, {thickness: 2, color: FlxColor.RED});
 				trace("    hitLocation = " + collidePoint);
 				var hx = Std.int(collidePoint.x / 16);
 				var hy = Std.int(collidePoint.y / 16);
 				var tileThatGotHit = walls.getTile(hx, hy);
 				trace("    tileThatGotHit = " + tileThatGotHit);
-			}
 
-			if (drop != null)
-			{
-				// show player feedback that an item dropped
-				for (_ in 1...4)
+				drop = TilesProcGen.getTileDrop(tileThatGotHit);
+
+				if (drop != null)
 				{
-					add(new MagicPoof(tx, ty));
+					// if something actually got dropped, delete the tile...
+					var replacementTile = TilesProcGen.getTileReplacement(tileThatGotHit);
+					if (replacementTile != null)
+					{
+						// TODO replace tile...
+					}
+
+					// show player feedback that an item dropped
+
+					drop.x = hx;
+					drop.y = hy;
+
+					// drop.x += (1 * Settings.TILE_WIDTH); // offset it a little so we don't immediately pick it up
+					// drop.y += (1 * Settings.TILE_HEIGHT); // offset it a little so we don't immediately pick it up
+
+					for (_ in 1...4)
+					{
+						add(new MagicPoof(drop.x, drop.y));
+					}
+
+					items.add(drop);
 				}
-
-				drop.x = tx;
-				drop.y = ty;
-
-				drop.x += (1 * Settings.TILE_WIDTH); // offset it a little so we don't immediately pick it up
-				drop.y += (1 * Settings.TILE_HEIGHT); // offset it a little so we don't immediately pick it up
-
-				items.add(drop);
 			}
 		}
 
