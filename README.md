@@ -11,7 +11,9 @@ Visit this page to play the latest commit from the branch `release` in your brow
 - <https://henryfbp.github.io/MountainFlow/>
 - Please note you can press `F12` to see extra debug information in your browser.
 
-Download a release for your platform at <https://github.com/HenryFBP/MountainFlow/releases>
+Visit this page to download a Windows/OSX/Linux binary release file:
+
+- <https://github.com/HenryFBP/MountainFlow/releases>
 
 ## Releasing
 
