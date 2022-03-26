@@ -47,8 +47,8 @@ final class IHateMath
 	public static final DIRECTION_POINT_MAP = [
 		LEFT => new FlxPoint(-1, 0),
 		RIGHT => new FlxPoint(1, 0),
-		UP => new FlxPoint(0, 1),
-		DOWN => new FlxPoint(0, -1)
+		UP => new FlxPoint(0, -1),
+		DOWN => new FlxPoint(0, 1)
 	];
 
 	public static function directionToPoint(direction:FlxDirectionFlags)
