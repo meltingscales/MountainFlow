@@ -108,7 +108,7 @@ class StatePlayProcGen extends FlxState
 
 			var tileUnder = walls.getTile(xi, yi);
 			// trace("under " + x + "," + y + " we get tile " + tileUnder);
-			var drop = null;
+			var itemDropped = null;
 			// drop = TilesProcGen.getTileDrop(tileUnder);
 			// trace("we would get this as a drop: " + drop.name);
 
@@ -155,14 +155,15 @@ class StatePlayProcGen extends FlxState
 				if (replacementTile != null)
 				{
 					walls.setTile(hitXTC, hitYTC, replacementTile);
+					// TODO show feedback for tile breaking
 				}
 
-				drop = TilesProcGen.getTileDrop(tileThatGotMined);
+				itemDropped = TilesProcGen.getTileDrop(tileThatGotMined);
 				// if we get anything from mining a tile...
-				if (drop != null)
+				if (itemDropped != null)
 				{
-					drop.x = hitXWC;
-					drop.y = hitYWC;
+					itemDropped.x = hitXWC;
+					itemDropped.y = hitYWC;
 
 					// drop.x += (1 * Settings.TILE_WIDTH); // offset it a little so we don't immediately pick it up
 					// drop.y += (1 * Settings.TILE_HEIGHT); // offset it a little so we don't immediately pick it up
@@ -170,10 +171,10 @@ class StatePlayProcGen extends FlxState
 					// show player feedback that an item dropped
 					for (_ in 1...4)
 					{
-						add(new MagicPoof(drop.x, drop.y));
+						add(new MagicPoof(itemDropped.x, itemDropped.y));
 					}
 
-					items.add(drop);
+					items.add(itemDropped);
 				}
 			}
 		}
