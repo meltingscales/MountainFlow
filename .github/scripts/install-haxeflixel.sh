@@ -20,3 +20,7 @@ cat limesetupflixellog.txt
 echo "Done downloading."
 echo -ne 'y\n' | haxelib run lime setup
 echo "Done!"
+
+haxe --version
+lime --version
+haxelib version
