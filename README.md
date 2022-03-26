@@ -121,3 +121,5 @@ SPECIFICALLY:
 - <https://github.com/HaxeFlixel/snippets.haxeflixel.com/blob/master/demos/tiles/ray/source/PlayState.hx>
 - <https://github.com/Beeblerox/Simplest-Heaps-Examples>
 - <https://kinocreates.io/tutorials/haxeflixel-object-pooling/>
+- <https://github.com/kevinresol/flixel-rpg>
+- <https://github.com/kevinresol/hare>

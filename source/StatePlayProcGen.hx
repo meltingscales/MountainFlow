@@ -68,7 +68,7 @@ class StatePlayProcGen extends FlxState
 		map.loadEntities(placeEntities, "entities");
 		add(player);
 
-		this.HUDinventory = new HUDInventory();
+		this.HUDinventory = new HUDInventory(this.player.inventory);
 		// helpText.screenCenter();
 		add(HUDinventory);
 
@@ -191,7 +191,7 @@ class StatePlayProcGen extends FlxState
 			item.kill();
 
 			// show player their inventory
-			HUDinventory.updateHUD(player.inventory);
+			HUDinventory.updateHUD();
 		}
 	}
 }

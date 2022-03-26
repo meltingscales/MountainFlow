@@ -13,21 +13,37 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 {
 	var background:FlxSprite;
 	var inventoryText:FlxText;
+	var isOpen:Bool;
+	var inventory:Inventory;
 
-	public function new()
+	public function toggleVisible()
 	{
-		super();
-		background = new FlxSprite().makeGraphic(FlxG.width, 20, FlxColor.BLACK);
-		background.drawRect(0, 19, FlxG.width, 1, FlxColor.WHITE);
-		inventoryText = new FlxText(16, 2, 0, "le inv :DDDDDD", 8);
-		inventoryText.setBorderStyle(SHADOW, FlxColor.GRAY, 1, 1);
-		add(background);
-		add(inventoryText);
-		forEach(function(sprite) sprite.scrollFactor.set(0, 0));
+		this.isOpen = !this.isOpen;
 	}
 
-	public function updateHUD(inv:Inventory)
+	public function new(inv:Inventory)
 	{
-		inventoryText.text = inv.pretty_print();
+		super();
+
+		this.inventory = inv;
+
+		background = new FlxSprite().makeGraphic(FlxG.width, 20, FlxColor.BLACK);
+		background.drawRect(0, 19, FlxG.width, 1, FlxColor.WHITE);
+
+		inventoryText = new FlxText(16, 2, 0, "le inventorio :3c", 8);
+		inventoryText.setBorderStyle(SHADOW, FlxColor.GRAY, 1, 1);
+
+		add(background);
+		add(inventoryText);
+
+		forEach(function(sprite)
+		{
+			sprite.scrollFactor.set(0, 0);
+		});
+	}
+
+	public function updateHUD()
+	{
+		inventoryText.text = this.inventory.pretty_print();
 	}
 }
