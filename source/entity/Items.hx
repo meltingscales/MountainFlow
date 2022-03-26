@@ -45,11 +45,11 @@ class Items
 
 	public static function OreChunk1(x = 0, y = 0)
 	{
-		return new Item(x, y, null, "Ore Chunk 1", ID_ORE_CHUNK1);
+		return new Item(x, y, AssetPaths.oreChunk1__png, "Ore Chunk 1", ID_ORE_CHUNK1);
 	}
 
 	public static function OreChunk2(x = 0, y = 0)
 	{
-		return new Item(x, y, null, "Ore Chunk 2", ID_ORE_CHUNK2);
+		return new Item(x, y, AssetPaths.oreChunk2__png, "Ore Chunk 2", ID_ORE_CHUNK2);
 	}
 }
