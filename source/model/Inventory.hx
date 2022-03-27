@@ -20,7 +20,7 @@ class Inventory
 		}
 	}
 
-	public function sorted_itemID():Map<Int, Array<Item>>
+	public function sorted_by_itemID():Map<Int, Array<Item>>
 	{
 		var by_id = new Map();
 
@@ -34,6 +34,16 @@ class Inventory
 			by_id[item.itemId].push(item);
 		}
 		return by_id;
+	}
+
+	public function filter_list_itemID(id:Int):Null<Array<Item>>
+	{
+		var sorted_by_id = this.sorted_by_itemID();
+		if (sorted_by_id.exists(id))
+		{
+			return sorted_by_id[id];
+		}
+		return null;
 	}
 
 	public function num_items()
@@ -60,7 +70,7 @@ class Inventory
 	{
 		var ret = "" + this.num_items() + " items in total\n";
 
-		var by_itemid = this.sorted_itemID();
+		var by_itemid = this.sorted_by_itemID();
 		for (key in by_itemid.keys())
 		{
 			var value = by_itemid[key];
