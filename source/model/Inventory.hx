@@ -20,6 +20,22 @@ class Inventory
 		}
 	}
 
+	public function sorted_itemID():Map<Int, Array<Item>>
+	{
+		var by_id = new Map();
+
+		for (item in this.data)
+		{
+			if (!by_id.exists(item.itemId))
+			{
+				by_id[item.itemId] = new Array<Item>();
+			}
+
+			by_id[item.itemId].push(item);
+		}
+		return by_id;
+	}
+
 	public function num_items()
 	{
 		return this.data.length;
@@ -42,23 +58,13 @@ class Inventory
 
 	public function pretty_print():String
 	{
-		var id_counts = new Map();
-
-		for (item in this.data)
-		{
-			if (!id_counts.exists(item.itemId))
-			{
-				id_counts[item.itemId] = 0;
-			}
-
-			id_counts[item.itemId] += 1;
-		}
-
 		var ret = "" + this.num_items() + " items in total\n";
 
-		for (key in id_counts.keys())
+		var by_itemid = this.sorted_itemID();
+		for (key in by_itemid.keys())
 		{
-			var count = id_counts[key];
+			var value = by_itemid[key];
+			var count = value.length;
 			var item = Items.by_id(key);
 
 			ret += "" + count + " of " + item.name + "\n";
