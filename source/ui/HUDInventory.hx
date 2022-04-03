@@ -16,7 +16,8 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 	var background:FlxSprite;
 	var inventoryText:FlxText;
 
-	// var inventoryTiles:
+	var inventoryTiles:Array<Item>;
+
 	var isOpen:Bool;
 	var inventory:Inventory;
 
@@ -30,6 +31,7 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 		super();
 
 		this.inventory = inv;
+		this.inventoryTiles = new Array();
 
 		background = new FlxSprite().makeGraphic(FlxG.width, 20, FlxColor.BLACK);
 		background.drawRect(0, 19, FlxG.width, 1, FlxColor.WHITE);
@@ -50,12 +52,30 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 	{
 		inventoryText.text = this.inventory.pretty_print();
 
+		// clear out old items
+		for (item in this.inventoryTiles)
+		{
+			// item.kill();
+			item.destroy();
+		}
+
+		this.inventoryTiles = new Array();
+
+		// render new items
+		var i = 0;
 		for (itemid in this.inventory.set_of_itemID())
 		{
 			var item = Items.by_id(itemid);
 			trace("Should UI render item " + item.prettyPrint());
 
-			item.allowCollisions = NONE;
+			item.scrollFactor.set(0, 0); // NEEDED so we render as a "static" non moving layer
+			item.allowCollisions = NONE; // it's a ui elt, shouldn't be picked up
+			item.x = (i * 16);
+			item.y = 0;
+
+			add(item);
+			inventoryTiles.push(item);
+			i += 1;
 		}
 	}
 }
