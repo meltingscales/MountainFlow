@@ -71,7 +71,9 @@ class StatePlayProcGen extends FlxState
 		add(HUDinventory);
 
 		this.line = new FlxSprite();
-		line.makeGraphic(FlxG.width, FlxG.height, 0);
+		line.makeGraphic(1000, 1000, 0);
+		// TODO this will be out of bounds eventually... we should just move its x/y instead of making the drawable region super large
+
 		add(this.line);
 
 		FlxG.camera.follow(player, TOPDOWN, 1);
