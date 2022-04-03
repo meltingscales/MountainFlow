@@ -47,4 +47,9 @@ class Item extends FlxSprite
 
 		loadGraphic(graphicPath, false, 8, 8);
 	}
+
+	public function prettyPrint()
+	{
+		return '<Item id=${this.itemId} name=${this.name}>';
+	}
 }

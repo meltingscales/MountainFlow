@@ -20,6 +20,20 @@ class Inventory
 		}
 	}
 
+	public function set_of_itemID():List<Int>
+	{
+		var allIDs = this.sorted_by_itemID().keys();
+
+		var ret = new List<Int>();
+
+		while (allIDs.hasNext())
+		{
+			ret.add(allIDs.next());
+		}
+
+		return ret;
+	}
+
 	public function sorted_by_itemID():Map<Int, Array<Item>>
 	{
 		var by_id = new Map();

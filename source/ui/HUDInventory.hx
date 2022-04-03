@@ -1,5 +1,7 @@
 package ui;
 
+import entity.Item;
+import entity.Items;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -13,6 +15,8 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 {
 	var background:FlxSprite;
 	var inventoryText:FlxText;
+
+	// var inventoryTiles:
 	var isOpen:Bool;
 	var inventory:Inventory;
 
@@ -30,7 +34,7 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 		background = new FlxSprite().makeGraphic(FlxG.width, 20, FlxColor.BLACK);
 		background.drawRect(0, 19, FlxG.width, 1, FlxColor.WHITE);
 
-		inventoryText = new FlxText(16, 2, 0, "le inventorio :3c", 8);
+		inventoryText = new FlxText(16, 2, 0, "[Empty inventory]", 8);
 		inventoryText.setBorderStyle(SHADOW, FlxColor.GRAY, 1, 1);
 
 		add(background);
@@ -45,5 +49,13 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 	public function updateHUD()
 	{
 		inventoryText.text = this.inventory.pretty_print();
+
+		for (itemid in this.inventory.set_of_itemID())
+		{
+			var item = Items.by_id(itemid);
+			trace("Should UI render item " + item.prettyPrint());
+
+			item.allowCollisions = NONE;
+		}
 	}
 }

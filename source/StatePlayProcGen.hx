@@ -1,6 +1,5 @@
 package;
 
-import entity.Coin;
 import entity.Item;
 import entity.MagicPoof;
 import entity.Player;
@@ -10,7 +9,6 @@ import flixel.FlxState;
 import flixel.addons.editors.ogmo.FlxOgmo3Loader;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
-import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
 import flixel.util.FlxColor;
 import flixel.util.FlxSpriteUtil;
