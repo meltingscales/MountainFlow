@@ -8,7 +8,7 @@ class Items
 	public static var ID_STICK = 1;
 	public static var ID_DIRT_GLOB = 2;
 	public static var ID_ORE_CHUNK1 = 3;
-	public static var ID_ORE_CHUNK2 = 3;
+	public static var ID_ORE_CHUNK2 = 4;
 
 	public static var BY_ID_MAP = [
 		ID_MONSTER_ENERGY => MonsterEnergy,

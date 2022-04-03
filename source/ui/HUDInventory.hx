@@ -16,7 +16,7 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 	var background:FlxSprite;
 	var inventoryText:FlxText;
 
-	var inventoryTiles:Array<Item>;
+	var inventoryHotbar:Array<Item>;
 
 	var isOpen:Bool;
 	var inventory:Inventory;
@@ -31,12 +31,12 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 		super();
 
 		this.inventory = inv;
-		this.inventoryTiles = new Array();
+		this.inventoryHotbar = new Array();
 
 		background = new FlxSprite().makeGraphic(FlxG.width, 20, FlxColor.BLACK);
 		background.drawRect(0, 19, FlxG.width, 1, FlxColor.WHITE);
 
-		inventoryText = new FlxText(16, 2, 0, "[Empty inventory]", 8);
+		inventoryText = new FlxText((Settings.TILE_WIDTH * 1), (Settings.TILE_HEIGHT * 3), 0, "[Empty inventory]", 8);
 		inventoryText.setBorderStyle(SHADOW, FlxColor.GRAY, 1, 1);
 
 		add(background);
@@ -53,13 +53,13 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 		inventoryText.text = this.inventory.pretty_print();
 
 		// clear out old items
-		for (item in this.inventoryTiles)
+		for (item in this.inventoryHotbar)
 		{
 			// item.kill();
 			item.destroy();
 		}
 
-		this.inventoryTiles = new Array();
+		this.inventoryHotbar = new Array();
 
 		// render new items
 		var i = 0;
@@ -70,11 +70,11 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 
 			item.scrollFactor.set(0, 0); // NEEDED so we render as a "static" non moving layer
 			item.allowCollisions = NONE; // it's a ui elt, shouldn't be picked up
-			item.x = (i * 16);
-			item.y = 0;
+			item.x = (i * (Settings.TILE_WIDTH + 4));
+			item.y = 8;
 
 			add(item);
-			inventoryTiles.push(item);
+			inventoryHotbar.push(item);
 			i += 1;
 		}
 	}
