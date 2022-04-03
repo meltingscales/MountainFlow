@@ -71,6 +71,7 @@ class StatePlayProcGen extends FlxState
 		add(HUDinventory);
 
 		this.line = new FlxSprite();
+		// this.line.scrollFactor.set(0, 0); // it should be statically drawn
 		line.makeGraphic(1000, 1000, 0);
 		// TODO this will be out of bounds eventually... we should just move its x/y instead of making the drawable region super large
 
@@ -79,10 +80,6 @@ class StatePlayProcGen extends FlxState
 		FlxG.camera.follow(player, TOPDOWN, 1);
 
 		super.create();
-
-		// var text = new flixel.text.FlxText(0, 0, 0, "use WASD :)", 64);
-		// text.screenCenter();
-		// add(text);
 	}
 
 	override public function update(gameTickElapsed:Float)
