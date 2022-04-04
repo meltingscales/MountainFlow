@@ -35,12 +35,12 @@ class Items
 
 	public static function MonsterEnergy(x = 0, y = 0)
 	{
-		return new Item(x, y, null, "Monster Energy", ID_MONSTER_ENERGY);
+		return new Item(x, y, AssetPaths.monsterEnergy__png, "Monster Energy", ID_MONSTER_ENERGY);
 	}
 
 	public static function DirtGlob(x = 0, y = 0)
 	{
-		return new Item(x, y, null, "Dirt Glob", ID_DIRT_GLOB);
+		return new Item(x, y, AssetPaths.dirtGlob__png, "Dirt Glob", ID_DIRT_GLOB);
 	}
 
 	public static function OreChunk1(x = 0, y = 0)

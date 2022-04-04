@@ -32,7 +32,7 @@ class Item extends FlxSprite
 
 		if (graphicPath == null)
 		{
-			graphicPath = AssetPaths.monsterEnergy__png;
+			graphicPath = AssetPaths.missingTexture__png;
 		}
 
 		if (name == null)

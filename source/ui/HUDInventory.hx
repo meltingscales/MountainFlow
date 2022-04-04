@@ -6,6 +6,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
+import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import model.Inventory;
 
@@ -18,6 +19,7 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 
 	var inventoryHotbarItems:Array<Item>;
 	var inventoryHotbarNumbers:Array<FlxText>;
+	var inventoryHotbarDropButtons:Array<FlxButton>;
 
 	var isOpen:Bool;
 	var inventory:Inventory;
@@ -88,7 +90,7 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 			item.scrollFactor.set(0, 0); // NEEDED so we render as a "static" non moving layer
 			item.allowCollisions = NONE; // it's a ui elt, shouldn't be picked up
 			item.x = (i * (Settings.TILE_WIDTH + 4));
-			item.y = 8;
+			item.y = 0;
 
 			var numItems = sorted_by_itemid.get(item.itemId).length;
 			trace('Should UI render item ${item.prettyPrint()}. We have $numItems of it.');
@@ -99,8 +101,13 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 			var text = new FlxText();
 			text.scrollFactor.set(0, 0);
 			text.text = '${numItems}';
+
 			text.x = item.x;
 			text.y = item.y;
+
+			text.x += 4;
+			text.y += 4;
+
 			add(text);
 			inventoryHotbarNumbers.push(text);
 
