@@ -79,6 +79,7 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 
 		this.inventoryHotbarItems = new Array();
 		this.inventoryHotbarNumbers = new Array();
+		this.inventoryHotbarDropButtons = new Array();
 
 		// render new items
 		var i = 0;
@@ -93,23 +94,24 @@ class HUDInventory extends FlxTypedGroup<FlxSprite>
 			item.y = 0;
 
 			var numItems = sorted_by_itemid.get(item.itemId).length;
-			trace('Should UI render item ${item.prettyPrint()}. We have $numItems of it.');
+			trace('Should UI render item called "${item.name}". We have $numItems of it.');
 
 			add(item);
 			inventoryHotbarItems.push(item);
 
-			var text = new FlxText();
-			text.scrollFactor.set(0, 0);
-			text.text = '${numItems}';
+			var textNumItems = new FlxText();
+			textNumItems.scrollFactor.set(0, 0);
+			textNumItems.text = '${numItems}';
 
-			text.x = item.x;
-			text.y = item.y;
+			textNumItems.x = item.x;
+			textNumItems.y = item.y;
 
-			text.x += 4;
-			text.y += 4;
+			// offset # from item
+			textNumItems.x += 8;
+			textNumItems.y += 8;
 
-			add(text);
-			inventoryHotbarNumbers.push(text);
+			add(textNumItems);
+			inventoryHotbarNumbers.push(textNumItems);
 
 			i += 1;
 		}
